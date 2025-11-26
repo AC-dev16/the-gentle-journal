@@ -1,5 +1,12 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from .models import DiaryEntry
 
 # Register your models here.
-admin.site.register(DiaryEntry)
+@admin.register(DiaryEntry)
+class Admin(SummernoteModelAdmin):
+    list_display = ('user', 'location', 'pain_level', 'mood_level', 'sleep_hours', 'created_at')
+    search_fields = ['user__username', 'location']
+    list_filter = ('pain_level', 'mood_level', 'sleep_hours', 'created_at')
+    summernote_fields = ('notes', 'triggers')
+

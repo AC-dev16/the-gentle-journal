@@ -8,6 +8,7 @@ def homepage(request):
     return render(request, 'diary_entries/homepage.html')
 
 class DiaryEntryListView(generic.ListView):
-    model = DiaryEntry
+    queryset = DiaryEntry.objects.order_by('-created_at')
     template_name = 'diary_entries/entries.html'
-    
+    paginate_by = 10
+

@@ -1,32 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Gentle Journal - Your Personal Pain Tracker{% endblock %}
+
 {% block content %}
 
     <!-- Hero Section -->
     <div class="hero-section text-center">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-4">Welcome to Gentle Journal</h1>
-            <p class="lead mb-4">Your compassionate companion for tracking pain, mood, and wellness journey</p>
-            {% if not user.is_authenticated %}
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="" class="btn btn-primary btn-lg">
-                        <i class="bi bi-person-plus"></i> Get Started Free
-                    </a>
-                    <a href="" class="btn btn-outline-dark btn-lg">
-                        <i class="bi bi-box-arrow-in-right"></i> Sign In
-                    </a>
-                </div>
-            {% else %}
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="" class="btn btn-primary btn-lg">
-                        <i class="bi bi-speedometer2"></i> Go to Dashboard
-                    </a>
-                    <a href="" class="btn btn-outline-dark btn-lg">
-                        <i class="bi bi-journal-text"></i> View My Entries
-                    </a>
-                </div>
-            {% endif %}
+            <h1 class="display-4 fw-bold mb-4">Welcome to The Gentle Journal</h1>
+            <div class="green-bar">
+                <p class="lead mb-4">Your compassionate companion for tracking pain, mood, and wellness journey</p>
+                {% if not user.is_authenticated %}
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-person-plus"></i> Get Started Free
+                        </a>
+                        <a href="{% url 'account_login' %}" class="btn btn-outline-dark btn-lg">
+                            <i class="bi bi-box-arrow-in-right"></i> Sign In
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="" class="btn btn-primary btn-lg">
+                            <i class="bi bi-speedometer2"></i> Go to Dashboard
+                        </a>
+                        <a href="" class="btn btn-outline-dark btn-lg">
+                            <i class="bi bi-journal-text"></i> View My Entries
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 

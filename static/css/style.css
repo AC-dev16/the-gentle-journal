@@ -37,3 +37,14 @@ main {
     margin-bottom: 80px;
 }
 
+div.container.top {
+    position: relative;
+    top: 60px;
+}
+
+.green-bar {
+    background-color: #E6F2EC;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}

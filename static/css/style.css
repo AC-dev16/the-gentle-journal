@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+:root {
+    --primary-color: #D9EAD3;
+    --secondary-color: #3A7D7D;
+    --highlight-color: #6BBBAE;
+    --text-color-primary: #2F4F4F;
+    --text-color-secondary: #6B7D7D;
+    --accent-color: #EDEAF6;
+    --primary-font: 'Lato', sans-serif;
+    --secondary-font: 'Forum', serif;
+}
+
+body {
+    background: url(../images/gj-bgbig.webp) no-repeat center center fixed;
+    background-size: cover;
+    font-family: var(--secondary-font);
+    color: var(--text-color-primary);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    border-bottom: grey 1px solid;
+    background-color: var(--primary-color);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+main {
+    margin-top: 70px;
+    margin-bottom: 80px;
+}
+

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class DiaryEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='diary_entries')
     location = models.CharField(max_length=100)
-    pain_level =  models.IntegerField()
+    pain_level = models.IntegerField()
     mood_level = models.IntegerField()
     sleep_hours = models.IntegerField()
     triggers = models.TextField(blank=True, null=True)

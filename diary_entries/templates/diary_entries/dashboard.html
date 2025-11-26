@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard - The Gentle Journal{% endblock %}
+
+{% block content %}
+
+<!-- Dashboard Header -->
+<div class="dashboard-header text-center">
+    <div class="container">
+        <h1 class="mb-3">
+            <i class="bi bi-sun"></i> Welcome, {{ user.first_name|default:user.username }}!
+        </h1>
+        <p class="lead mb-0">How are you feeling today? Take a moment to check in with yourself.</p>
+    </div>
+</div>
+
+{% endblock %}

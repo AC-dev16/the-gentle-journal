@@ -1,13 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Welcome to the Gentle Journal</h1>
-    <p>Your personal space to reflect and grow.</p>
-    <a href="{% url 'diary_entry_list' %}">View Diary Entries</a>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Welcome to Gentle Journal</h1>
+            <p class="lead mb-4">Your compassionate companion for tracking pain, mood, and wellness journey</p>
+            {% if not user.is_authenticated %}
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="" class="btn btn-primary btn-lg">
+                        <i class="bi bi-person-plus"></i> Get Started Free
+                    </a>
+                    <a href="" class="btn btn-outline-dark btn-lg">
+                        <i class="bi bi-box-arrow-in-right"></i> Sign In
+                    </a>
+                </div>
+            {% else %}
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="" class="btn btn-primary btn-lg">
+                        <i class="bi bi-speedometer2"></i> Go to Dashboard
+                    </a>
+                    <a href="" class="btn btn-outline-dark btn-lg">
+                        <i class="bi bi-journal-text"></i> View My Entries
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="mb-4">Why Choose Gentle Journal?</h2>
+                <p class="text-muted">A gentle approach to understanding and managing your pain</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card feature-card text-center p-4">
+                    <div class="card-body">
+                        <i class="bi bi-heart-pulse feature-icon"></i>
+                        <h5 class="card-title">Track Your Pain</h5>
+                        <p class="card-text">Monitor pain levels, location, and triggers to identify patterns and improve your quality of life.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card feature-card text-center p-4">
+                    <div class="card-body">
+                        <i class="bi bi-emoji-smile feature-icon"></i>
+                        <h5 class="card-title">Mood & Wellness</h5>
+                        <p class="card-text">Record your emotional state and sleep patterns to understand the connection with your physical health.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card feature-card text-center p-4">
+                    <div class="card-body">
+                        <i class="bi bi-graph-up feature-icon"></i>
+                        <h5 class="card-title">Progress Insights</h5>
+                        <p class="card-text">View your entries over time to share meaningful data with healthcare providers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

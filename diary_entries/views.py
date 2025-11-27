@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import generic
 from datetime import datetime
@@ -16,6 +17,7 @@ class DiaryEntryListView(generic.ListView):
     paginate_by = 10
 
 # User dashboard view with quick entry form
+@login_required
 def dashboard(request):
     """User dashboard showing personalized data"""
     if request.method == 'POST':
@@ -52,6 +54,7 @@ def dashboard(request):
     return render(request, 'diary_entries/dashboard.html', context)
 
 # Create a new diary entry
+@login_required
 def entry_create(request):
     """Create a new diary entry"""
     if request.method == 'POST':
@@ -72,8 +75,9 @@ def entry_create(request):
     return render(request, 'diary_entries/entries.html', {'form': form, 'entries': entries})
 
 # Edit an existing diary entry
+@login_required
 def edit_entry(request, entry_id):
-    """Edit a diary entry"""
+    """Edit a diary entry belonging to the current user"""
     entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)
 
     if request.method == 'POST':
@@ -82,12 +86,15 @@ def edit_entry(request, entry_id):
             form.save()
             messages.success(request, 'Diary entry updated successfully!')
             return redirect('entries')
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = DiaryEntryForm(instance=entry)
 
     return render(request, 'diary_entries/entries.html', {'form': form, 'entry': entry})
 
 # Delete an entry
+@login_required
 def delete_entry(request, entry_id):
     """Delete a diary entry"""
     entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)

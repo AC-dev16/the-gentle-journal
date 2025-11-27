@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {% if entry %}Edit Entry{% else %}New Entry{% endif %} - Gentle Journal
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card entry-form-card">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <h4 class="mb-0">
+                        <i class="bi bi-{% if entry %}pencil{% else %}plus-circle-fill{% endif %}"></i>
+                        {% if entry %}Edit Entry{% else %}New Detailed Entry{% endif %}
+                    </h4>
+                    <small class="text-muted">
+                        {% if entry %}Update your entry details{% else %}Record comprehensive information about your current state{% endif %}
+                    </small>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% url 'entries' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Back to Entries
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> 
+                                {% if entry %}Update Entry{% else %}Save Entry{% endif %}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

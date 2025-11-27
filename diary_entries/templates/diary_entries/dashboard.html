@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Dashboard - The Gentle Journal{% endblock %}
 
@@ -31,37 +32,59 @@
                     <form method="post" class="row g-3">
                         {% csrf_token %}
 
+                        <!-- Location Field -->
                         <div class="col-12">
-                            <label for="{{ form.location.id_for_label }}" class="form-label">
-                                <i class="bi bi-journal-text"></i> Location
-                            </label>
-                            {{ form.location }}
+                            {{ form.location|as_crispy_field }}
                         </div>
                         
+                        <!-- Pain Level Field -->
                         <div class="col-md-6">
-                            <label for="{{ form.pain_level.id_for_label }}" class="form-label">
-                                <i class="bi bi-thermometer-half"></i> Pain Level (0-10)
-                            </label>
-                            {{ form.pain_level }}
+                            {{ form.pain_level|as_crispy_field }}
                             <div class="form-text">0 = No pain, 10 = Severe pain</div>
                         </div>
                         
+                        <!-- Mood Level Field -->
                         <div class="col-md-6">
-                            <label for="{{ form.mood_level.id_for_label }}" class="form-label">
-                                <i class="bi bi-emoji-smile"></i> Current Mood
-                            </label>
-                            {{ form.mood_level }}
+                            {{ form.mood_level|as_crispy_field }}
+                            <div class="form-text">1 = Very low, 10 = Excellent</div>
                         </div>
                         
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 <i class="bi bi-plus-circle"></i> Save Entry
                             </button>
-                            <a href="" class="btn btn-outline-secondary btn-lg ms-2">
+                            <a href="{% url 'entry_create' %}" class="btn btn-outline-secondary btn-lg ms-2">
                                 <i class="bi bi-journal-plus"></i> Detailed Entry
                             </a>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Entries Section -->
+        <div class="col-lg-4">
+            <div class="card recent-entries-card">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <h5 class="mb-0">
+                        <i class="bi bi-clock-history"></i> Recent Entries
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if entries %}
+                        {% for entry in entries %}
+                        <div class="recent-entry mb-3 p-2 border-start border-primary border-3">
+                            <small class="text-muted">{{ entry.created_at|date:"M d, H:i" }}</small>
+                            <div><strong>{{ entry.location }}</strong> - Pain: {{ entry.pain_level }}/10</div>
+                            <div class="text-muted">Mood: {{ entry.mood_level }}/10</div>
+                        </div>
+                        {% endfor %}
+                        <a href="{% url 'entries' %}" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-journal-text"></i> View All Entries
+                        </a>
+                    {% else %}
+                        <p class="text-muted">No entries yet. Create your first entry above!</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -12,9 +12,13 @@ def homepage(request):
     return render(request, 'diary_entries/homepage.html')
 
 class DiaryEntryListView(generic.ListView):
-    queryset = DiaryEntry.objects.order_by('-created_at')
-    template_name = 'diary_entries/entries.html'
+    model = DiaryEntry
+    template_name = 'diary_entries/entry_details.html'
+    context_object_name = 'entries'
     paginate_by = 10
+    
+    def get_queryset(self):
+        return DiaryEntry.objects.filter(user=self.request.user).order_by('-created_at')
 
 # User dashboard view with quick entry form
 @login_required
@@ -58,7 +62,6 @@ def dashboard(request):
 def entry_create(request):
     """Create a new diary entry"""
     if request.method == 'POST':
-        # Process form data here
         form = DiaryEntryForm(request.POST)
         if form.is_valid():
             entry = form.save(commit=False)
@@ -69,10 +72,7 @@ def entry_create(request):
     else:
         form = DiaryEntryForm()
 
-    # Get all user's entries
-    entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
-
-    return render(request, 'diary_entries/entries.html', {'form': form, 'entries': entries})
+    return render(request, 'diary_entries/entry_details.html', {'form': form})
 
 # Edit an existing diary entry
 @login_required
@@ -91,7 +91,14 @@ def edit_entry(request, entry_id):
     else:
         form = DiaryEntryForm(instance=entry)
 
-    return render(request, 'diary_entries/entries.html', {'form': form, 'entry': entry})
+    return render(request, 'diary_entries/entry_details.html', {'form': form, 'entry': entry})
+
+# List all entries
+@login_required
+def entry_list(request):
+    """List all user entries"""
+    entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'diary_entries/entries.html', {'entries': entries})
 
 # Delete an entry
 @login_required

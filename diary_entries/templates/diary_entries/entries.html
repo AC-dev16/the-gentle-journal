@@ -64,8 +64,8 @@
                                 <i class="bi bi-emoji-smile"></i> Emotional State
                             </h6>
                             <div class="mb-3">
-                                <label for="{{ form.mood.id_for_label }}" class="form-label">Current Mood</label>
-                                {{ form.mood }}
+                                <label for="{{ form.mood_level.id_for_label }}" class="form-label">Current Mood</label>
+                                {{ form.mood_level }}
                             </div>
                         </div>
                         
@@ -81,10 +81,10 @@
                                 {{ form.triggers }}
                             </div>
                             <div class="mb-3">
-                                <label for="{{ form.content.id_for_label }}" class="form-label">
+                                <label for="{{ form.notes.id_for_label }}" class="form-label">
                                     <i class="bi bi-card-text"></i> Description
                                 </label>
-                                {{ form.content }}
+                                {{ form.notes }}
                             </div>
                         </div>
                         
@@ -148,7 +148,7 @@
                                         <!-- Entry Details -->
                                         <div class="ms-3 flex-grow-1">
                                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                                <h6 class="mb-0">{{ entry.location|default:"General" }} - {{ entry.mood|title }}</h6>
+                                                <h6 class="mb-0">{{ entry.location|default:"General" }} - {{ entry.mood_level|title }}</h6>
                                                 <div class="entry-meta">
                                                     <i class="bi bi-calendar3"></i>
                                                     {{ entry.created_at|date:"M d, Y" }}
@@ -168,24 +168,12 @@
                                                     </small>
                                                 </div>
                                                 {% endif %}
-                                                {% if entry.triggers %}
-                                                <div class="col-sm-6">
-                                                    <small class="text-muted">
-                                                        <i class="bi bi-exclamation-triangle"></i> Triggers noted
-                                                    </small>
-                                                </div>
-                                                {% endif %}
                                             </div>
                                             
                                             <!-- Entry Content -->
                                             <div class="entry-content">
-                                                {% if entry.triggers %}
-                                                <div class="mb-2">
-                                                    <strong>Triggers:</strong> {{ entry.triggers }}
-                                                </div>
-                                                {% endif %}
                                                 <div>
-                                                    <strong>Notes:</strong> {{ entry.content }}
+                                                    <strong>Notes:</strong> {{ entry.notes }}
                                                 </div>
                                             </div>
                                         </div>
@@ -200,6 +188,7 @@
                                             <i class="bi bi-trash3"></i>
                                         </a>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

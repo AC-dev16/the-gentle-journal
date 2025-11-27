@@ -72,7 +72,7 @@ def entry_create(request):
     return render(request, 'diary_entries/entries.html', {'form': form, 'entries': entries})
 
 # Edit an existing diary entry
-def entry_edit(request, entry_id):
+def edit_entry(request, entry_id):
     """Edit a diary entry"""
     entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)
 
@@ -85,7 +85,7 @@ def entry_edit(request, entry_id):
     else:
         form = DiaryEntryForm(instance=entry)
 
-    return render(request, 'diary_entries/entry_edit.html', {'form': form, 'entry': entry})
+    return render(request, 'diary_entries/entries.html', {'form': form, 'entry': entry})
 
 # Delete an entry
 def delete_entry(request, entry_id):

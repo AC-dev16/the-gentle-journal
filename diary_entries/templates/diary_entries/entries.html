@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Entries - Gentle Journal{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="page-header text-center">
+    <div class="container">
+        <h1 class="mb-2">
+            <i class="bi bi-journal-text"></i> My Entries
+        </h1>
+        <p class="lead mb-0">Track your detailed pain and wellness journey</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <!-- Entry Form -->
+        <div class="col-lg-5 mb-4">
+            <div class="card entry-form-card">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <h4 class="mb-0">
+                        <i class="bi bi-plus-circle-fill text-success"></i>
+                        New Detailed Entry
+                    </h4>
+                    <small class="text-muted">Record comprehensive information about your current state</small>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Basic Information -->
+                        <div class="form-section">
+                            <h6 class="section-title">
+                                <i class="bi bi-info-circle"></i> Basic Information
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="{{ form.location.id_for_label }}" class="form-label">
+                                        <i class="bi bi-geo-alt"></i> Pain Location
+                                    </label>
+                                    {{ form.location }}
+                                </div>
+                                <div class="col-6">
+                                    <label for="{{ form.pain_level.id_for_label }}" class="form-label">
+                                        <i class="bi bi-thermometer-half"></i> Pain Level
+                                    </label>
+                                    {{ form.pain_level }}
+                                    <div class="form-text">0-10 scale</div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="{{ form.sleep_hours.id_for_label }}" class="form-label">
+                                        <i class="bi bi-moon"></i> Sleep Hours
+                                    </label>
+                                    {{ form.sleep_hours }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mood & Emotional State -->
+                        <div class="form-section">
+                            <h6 class="section-title">
+                                <i class="bi bi-emoji-smile"></i> Emotional State
+                            </h6>
+                            <div class="mb-3">
+                                <label for="{{ form.mood.id_for_label }}" class="form-label">Current Mood</label>
+                                {{ form.mood }}
+                            </div>
+                        </div>
+                        
+                        <!-- Details -->
+                        <div class="form-section">
+                            <h6 class="section-title">
+                                <i class="bi bi-journal-text"></i> Details
+                            </h6>
+                            <div class="mb-3">
+                                <label for="{{ form.triggers.id_for_label }}" class="form-label">
+                                    <i class="bi bi-exclamation-triangle"></i> Triggers
+                                </label>
+                                {{ form.triggers }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="{{ form.content.id_for_label }}" class="form-label">
+                                    <i class="bi bi-card-text"></i> Description
+                                </label>
+                                {{ form.content }}
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-save"></i> Save Detailed Entry
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Entries List -->
+        <div class="col-lg-7">
+            <div class="card entries-list-card">
+                <div class="card-header bg-transparent border-0 pt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="mb-0">
+                                <i class="bi bi-list-ul"></i> All Entries
+                            </h4>
+                            <small class="text-muted">{{ entries|length }} total entries</small>
+                        </div>
+                        <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-speedometer2"></i> Dashboard
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    {% if entries %}
+                        <!-- Filter/Sort Bar -->
+                        <div class="filter-bar">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <small class="text-muted">
+                                        <i class="bi bi-sort-down"></i> Sorted by most recent first
+                                    </small>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <small class="text-muted">{{ entries|length }} entries found</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Entries List -->
+                        {% for entry in entries %}
+                        <div class="entry-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="d-flex align-items-start flex-grow-1">
+                                        <!-- Pain Level Badge -->
+                                        {% if entry.pain_level <= 3 %}
+                                            <span class="pain-level-badge pain-low">{{ entry.pain_level }}</span>
+                                        {% elif entry.pain_level <= 6 %}
+                                            <span class="pain-level-badge pain-medium">{{ entry.pain_level }}</span>
+                                        {% else %}
+                                            <span class="pain-level-badge pain-high">{{ entry.pain_level }}</span>
+                                        {% endif %}
+                                        
+                                        <!-- Entry Details -->
+                                        <div class="ms-3 flex-grow-1">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <h6 class="mb-0">{{ entry.location|default:"General" }} - {{ entry.mood|title }}</h6>
+                                                <div class="entry-meta">
+                                                    <i class="bi bi-calendar3"></i>
+                                                    {{ entry.created_at|date:"M d, Y" }}
+                                                    <span class="ms-2">
+                                                        <i class="bi bi-clock"></i>
+                                                        {{ entry.created_at|time:"H:i" }}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Entry Metadata -->
+                                            <div class="row mb-2">
+                                                {% if entry.sleep_hours %}
+                                                <div class="col-sm-6">
+                                                    <small class="text-muted">
+                                                        <i class="bi bi-moon"></i> {{ entry.sleep_hours }}h sleep
+                                                    </small>
+                                                </div>
+                                                {% endif %}
+                                                {% if entry.triggers %}
+                                                <div class="col-sm-6">
+                                                    <small class="text-muted">
+                                                        <i class="bi bi-exclamation-triangle"></i> Triggers noted
+                                                    </small>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                            
+                                            <!-- Entry Content -->
+                                            <div class="entry-content">
+                                                {% if entry.triggers %}
+                                                <div class="mb-2">
+                                                    <strong>Triggers:</strong> {{ entry.triggers }}
+                                                </div>
+                                                {% endif %}
+                                                <div>
+                                                    <strong>Notes:</strong> {{ entry.content }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Delete Button -->
+                                    <div class="ms-2">
+                                        <a href="{% url 'delete_entry' entry.id %}" 
+                                           class="btn btn-outline-danger btn-sm delete-btn"
+                                           onclick="return confirm('Are you sure you want to delete this entry?')"
+                                           title="Delete entry">
+                                            <i class="bi bi-trash3"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                    {% else %}
+                        <!-- Empty State -->
+                        <div class="empty-state">
+                            <i class="bi bi-journal-x display-1 mb-4"></i>
+                            <h5>No entries yet</h5>
+                            <p>Start tracking your wellness journey by creating your first detailed entry.</p>
+                            <small class="text-muted">
+                                You can also create quick entries from your 
+                <a href="{% url 'dashboard' %}">dashboard</a>.
+                            </small>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-focus on location input when page loads
+    const locationInput = document.querySelector('input[name="location"]');
+    if (locationInput) {
+        locationInput.focus();
+    }
+    
+    // Add validation for pain level and sleep hours
+    const painInput = document.querySelector('input[name="pain_level"]');
+    const sleepInput = document.querySelector('input[name="sleep_hours"]');
+    
+    if (painInput) {
+        painInput.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            if (value < 0) this.value = 0;
+            if (value > 10) this.value = 10;
+        });
+    }
+    
+    if (sleepInput) {
+        sleepInput.addEventListener('input', function() {
+            const value = parseFloat(this.value);
+            if (value < 0) this.value = 0;
+            if (value > 24) this.value = 24;
+        });
+    }
+    
+    // Smooth scroll to new entry after form submission
+    if (window.location.hash === '#new-entry') {
+        document.querySelector('.entry-form-card').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    }
+});
+</script> -->
+{% endblock %}

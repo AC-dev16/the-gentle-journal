@@ -9,7 +9,7 @@
 <!-- Dashboard Header -->
 <div class="dashboard-header text-center">
     <div class="container">
-        <h1 class="mb-3">
+        <h1 class="display-4 mb-3">
             <i class="bi bi-sun"></i> Welcome, {{ user.first_name|default:user.username }}!
         </h1>
         <p class="lead mb-0">How are you feeling today? Take a moment to check in with yourself.</p>
@@ -91,4 +91,8 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

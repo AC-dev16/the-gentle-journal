@@ -88,7 +88,7 @@ def entry_edit(request, entry_id):
     return render(request, 'diary_entries/entry_edit.html', {'form': form, 'entry': entry})
 
 # Delete an entry
-def entry_delete(request, entry_id):
+def delete_entry(request, entry_id):
     """Delete a diary entry"""
     entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)
     entry.delete()

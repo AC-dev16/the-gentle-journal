@@ -76,11 +76,20 @@ div.container.top {
     border: 1px solid grey;
 }
 
+/* Ensure entry cards are clickable */
 .entry-card {
     border: 1px solid grey;
     padding: 10px;
     border-radius: 10px;
     box-shadow: grey 1px 1px 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.entry-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-color: var(--primary-color);
 }
 
 /* Prevent modal trigger on action buttons */
@@ -89,7 +98,15 @@ div.container.top {
     position: relative;
 }
 
+/* Ensure buttons don't inherit cursor from parent */
+.entry-actions a {
+    cursor: pointer !important;
+}
+
 /* Visual feedback for clickable area */
+.entry-card .flex-grow-1 {
+    cursor: pointer;
+}
 
 .modal-body p {
     margin-bottom: 1rem;

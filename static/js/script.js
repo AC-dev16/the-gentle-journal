@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add validation for pain level and sleep hours
         const painInput = document.querySelector('input[name="pain_level"]');
-        const moodInput = document.querySelector('input[name="mood_level"');
+        const moodInput = document.querySelector('input[name="mood_level"]');
         const sleepInput = document.querySelector('input[name="sleep_hours"]');
         
         if (painInput) {
@@ -47,32 +47,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-});
 
-// Read entry modal
-    const readEntryModal = document.getElementById('readEntryModal');
+    // SINGLE MODAL HANDLING APPROACH
+    // Handle entry cards modal - only on entries page
+    const entryCards = document.querySelectorAll('.entry-card');
     
-    if (readEntryModal) {
-        readEntryModal.addEventListener('show.bs.modal', function(event) {
-            // Get the clicked entry card
-            const clickedCard = event.relatedTarget;
+    if (entryCards.length > 0) {
+        entryCards.forEach(card => {
+            // Remove any Bootstrap data attributes to prevent conflicts
+            card.removeAttribute('data-bs-toggle');
+            card.removeAttribute('data-bs-target');
             
-            // Extract data from data attributes
-            const location = clickedCard.getAttribute('data-location');
-            const painLevel = clickedCard.getAttribute('data-pain-level');
-            const moodLevel = clickedCard.getAttribute('data-mood-level');
-            const sleepHours = clickedCard.getAttribute('data-sleep-hours');
-            const triggers = clickedCard.getAttribute('data-triggers');
-            const notes = clickedCard.getAttribute('data-notes');
-            const createdAt = clickedCard.getAttribute('data-created-at');
-            
-            // Update modal content
-            document.getElementById('modalLocation').textContent = location;
-            document.getElementById('modalPainLevel').textContent = painLevel + '/10';
-            document.getElementById('modalMoodLevel').textContent = moodLevel + '/10';
-            document.getElementById('modalSleepHours').textContent = sleepHours + ' hours';
-            document.getElementById('modalTriggers').textContent = triggers;
-            document.getElementById('modalNotes').textContent = notes;
-            document.getElementById('modalCreatedAt').textContent = createdAt;
+            // Add click event to the entire card
+            card.addEventListener('click', function(e) {
+                // Don't trigger if clicking on action buttons
+                if (e.target.closest('.entry-actions')) {
+                    return;
+                }
+                
+                // Get data from the clicked card
+                const location = this.getAttribute('data-location');
+                const painLevel = this.getAttribute('data-pain-level');
+                const moodLevel = this.getAttribute('data-mood-level');
+                const sleepHours = this.getAttribute('data-sleep-hours');
+                const triggers = this.getAttribute('data-triggers');
+                const notes = this.getAttribute('data-notes');
+                const createdAt = this.getAttribute('data-created-at');
+                
+                // Update modal content
+                const modal = document.getElementById('readEntryModal');
+                if (modal) {
+                    document.getElementById('modalLocation').textContent = location;
+                    document.getElementById('modalPainLevel').textContent = painLevel + '/10';
+                    document.getElementById('modalMoodLevel').textContent = moodLevel + '/10';
+                    document.getElementById('modalSleepHours').textContent = sleepHours + ' hours';
+                    document.getElementById('modalTriggers').textContent = triggers;
+                    document.getElementById('modalNotes').textContent = notes;
+                    document.getElementById('modalCreatedAt').textContent = createdAt;
+                    
+                    // Show the modal
+                    const bootstrapModal = new bootstrap.Modal(modal);
+                    bootstrapModal.show();
+                }
+            });
         });
-    };
+    }
+});

@@ -42,7 +42,8 @@
                         <div class="text-muted small">Mood: {{ entry.mood_level }}/10</div>
                     {% endif %}
                 </div>
-                <div class="entry-actions">
+                <!-- ADD onclick="event.stopPropagation()" HERE -->
+                <div class="entry-actions" onclick="event.stopPropagation();">
                     <a href="{% url 'edit_entry' entry.id %}" class="btn btn-outline-secondary btn-sm">
                         <i class="bi bi-pencil"></i>
                     </a>
@@ -112,6 +113,6 @@
     </div>
 </div>
 {% endblock %}
-<!-- {% block extra_js %}
+{% block extra_js %}
 <script src="{% static 'js/script.js' %}"></script>
-{% endblock %} -->
+{% endblock %}

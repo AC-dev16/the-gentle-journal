@@ -43,16 +43,22 @@ div.container.top {
 }
 
 .green-bar {
-    background-color: #E6F2EC;
+    background-color: var(--primary-color);
     padding: 15px;
     border-radius: 8px;
     margin-top: 20px;
 }
 
+hr {
+    border: solid 1px var(--text-color-secondary);
+    margin-top: 20px;
+}
+
 .card.quick-entry-card, .recent-entries-card {
-    background: linear-gradient(rgba(53, 140, 85, 0.7), rgba(217, 234, 211, 0.7) 30%);
-    border-bottom: 1px solid rgba(0,0,0,.125);
-    box-shadow: var(--text-color-primary) 2px 2px 0;
+    background: transparent;
+    border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: var(--text-color-primary) 1px 1px 0;
 }
 
 .recent-entry {
@@ -62,6 +68,8 @@ div.container.top {
 .btn-accent, .btn-new:hover, .entry-card:hover {
     background-color: var(--text-color-primary);
     color: white;
+    padding: 6px 12px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -113,3 +121,22 @@ div.container.top {
     font-size: 0.95rem;
 }
 
+.textinput, .numberinput, .textarea {
+    border: var(--text-color-primary) 1px solid;
+}
+
+
+/* Media Queries */
+
+/* Small screen size 320px */
+@media screen and (min-width: 768px) {
+    .card.feature-card {
+        height: 306px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .card.feature-card {
+        max-height: 210px;
+    }
+}

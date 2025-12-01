@@ -9,8 +9,8 @@
 <!-- Dashboard Header -->
 <div class="dashboard-header text-center">
     <div class="container">
-        <h1 class="display-4 fw-bold mb-3">
-            <i class="bi bi-sun"></i> Welcome, {{ user.first_name|default:user.username }}!
+        <h1 class="display-4 fw-bold mb-3 pt-4">
+            Welcome, {{ user.first_name|default:user.username }}!
         </h1>
         <p class="lead mb-4">How are you feeling today? Take a moment to check in with yourself.</p>
     </div>
@@ -22,8 +22,7 @@
         <div class="col-lg-8 mb-4">
             <div class="card quick-entry-card">
                 <div class="card-header bg-transparent border-0 pt-4">
-                    <h4 class="mb-0">
-                        <i class="bi bi-lightning-fill text-warning"></i>
+                    <h4 class="mb-0 fw-bold">
                         Quick Entry
                     </h4>
                     <small class="text-muted">Log your current state quickly and easily</small>
@@ -66,8 +65,8 @@
         <div class="col-lg-4">
             <div class="card recent-entries-card">
                 <div class="card-header bg-transparent border-0 pt-4">
-                    <h5 class="mb-0">
-                        <i class="bi bi-clock-history"></i> Recent Entries
+                    <h5 class="mb-0 fw-bold">
+                        Recent Entries
                     </h5>
                 </div>
                 <div class="card-body">

@@ -9,10 +9,10 @@
 <!-- Dashboard Header -->
 <div class="dashboard-header text-center">
     <div class="container">
-        <h1 class="display-4 mb-3">
+        <h1 class="display-4 fw-bold mb-3">
             <i class="bi bi-sun"></i> Welcome, {{ user.first_name|default:user.username }}!
         </h1>
-        <p class="lead mb-0">How are you feeling today? Take a moment to check in with yourself.</p>
+        <p class="lead mb-4">How are you feeling today? Take a moment to check in with yourself.</p>
     </div>
 </div>
 
@@ -50,10 +50,10 @@
                         </div>
                         
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-lg">
+                            <button type="submit" class="btn btn-accent">
                                 <i class="bi bi-plus-circle"></i> Save Entry
                             </button>
-                            <a href="{% url 'entry_create' %}" class="btn btn-outline-secondary btn-lg ms-2">
+                            <a href="{% url 'entry_create' %}" class="btn btn-accent-outline ms-2">
                                 <i class="bi bi-journal-plus"></i> Detailed Entry
                             </a>
                         </div>
@@ -73,13 +73,13 @@
                 <div class="card-body">
                     {% if entries %}
                         {% for entry in entries %}
-                        <div class="recent-entry mb-3 p-2 border-start border-primary border-3">
+                        <div class="recent-entry mb-3 p-2 border-1">
                             <small class="text-muted">{{ entry.created_at|date:"M d, H:i" }}</small>
-                            <div><strong>{{ entry.location }}</strong> - Pain: {{ entry.pain_level }}/10</div>
+                            <div><strong>Location: {{ entry.location }}</strong> - Pain: {{ entry.pain_level }}/10</div>
                             <div class="text-muted">Mood: {{ entry.mood_level }}/10</div>
                         </div>
                         {% endfor %}
-                        <a href="{% url 'entries' %}" class="btn btn-outline-primary btn-sm">
+                        <a href="{% url 'entries' %}" class="btn btn-accent-outline btn-sm">
                             <i class="bi bi-journal-text"></i> View All Entries
                         </a>
                     {% else %}

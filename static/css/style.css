@@ -48,3 +48,37 @@ div.container.top {
     border-radius: 8px;
     margin-top: 20px;
 }
+
+.card.quick-entry-card, .recent-entries-card {
+    background: linear-gradient(rgba(53, 140, 85, 0.7), rgba(217, 234, 211, 0.7) 30%);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    box-shadow: var(--text-color-primary) 2px 2px 0;
+}
+
+.recent-entry {
+    border-top: solid 1px black;
+}
+
+.btn-accent, .btn-new:hover, .entry-card:hover {
+    background-color: var(--text-color-primary);
+    color: white;
+    cursor: pointer;
+}
+
+.btn-accent-outline {
+    border: var(--text-color-primary) 2px solid;
+    color: var(--text-color-primary);
+    font-weight: bold;
+}
+
+.btn-new {
+    background-color: var(--primary-color);
+    border: 1px solid grey;
+}
+
+.entry-card {
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: grey 1px 1px 0;
+}

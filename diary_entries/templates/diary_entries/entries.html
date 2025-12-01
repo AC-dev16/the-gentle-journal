@@ -6,14 +6,14 @@
 {% block content %}
 <div class="container">
     <div class="page-header text-center mb-4">
-        <h1><i class="bi bi-journal-text"></i> My Entries</h1>
+        <h1 class="display-4 fw-bold"><i class="bi bi-journal-text"></i> My Entries</h1>
         <p class="lead">Your wellness journey</p>
     </div>
     
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h4>All Entries ({{ entries|length }})</h4>
         <div>
-            <a href="{% url 'entry_create' %}" class="btn btn-primary">
+            <a href="{% url 'entry_create' %}" class="btn btn-new">
                 <i class="bi bi-plus-circle"></i> New Entry
             </a>
         </div>
@@ -22,11 +22,11 @@
     {% if entries %}
         <!-- Entries list -->
         {% for entry in entries %}
-        <div class="entry-card mb-3">
+        <div class="entry-card p-3 mb-2">
             <!-- Entry content -->
             <div class="d-flex justify-content-between align-items-start">
                 <div>
-                    <h6>{{ entry.location }} - {{ entry.pain_level }}/10</h6>
+                    <h6>Location: {{ entry.location }} - Pain: {{ entry.pain_level }}/10</h6>
                     <small class="text-muted">{{ entry.created_at|date:"M d, Y H:i" }}</small>
                 </div>
                 <div>
@@ -49,3 +49,21 @@
     {% endif %}
 </div>
 {% endblock %}
+
+<!-- Read Modal -->
+<div class="modal fade" id="readEntryModal" tabindex="-1" aria-labelledby="readEntryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="readEntryModalLabel">Entry Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6>Location: <span id="modalLocation"></span></h6>
+                <p><strong>Pain Level:</strong> <span id="modalPainLevel"></span>/10</p>
+                <p><strong>Mood Level:</strong> <span id="modalMoodLevel"></span>/10</p>
+                <p><strong>Created At:</strong> <span id="modalCreatedAt"></span></p>
+            </div>
+        </div>
+    </div>
+</div>

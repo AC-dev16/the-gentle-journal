@@ -82,3 +82,17 @@ div.container.top {
     border-radius: 10px;
     box-shadow: grey 1px 1px 0;
 }
+
+/* Prevent modal trigger on action buttons */
+.entry-actions {
+    z-index: 10;
+    position: relative;
+}
+
+/* Visual feedback for clickable area */
+
+.modal-body p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+

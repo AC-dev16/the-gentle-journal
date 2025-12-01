@@ -7,26 +7,26 @@
 
     <!-- Hero Section -->
     <div class="hero-section text-center">
-        <div class="container">
+        <div class="container my-4">
             <h1 class="display-4 fw-bold mb-4">Welcome to The Gentle Journal</h1>
             <div class="green-bar">
                 <p class="lead mb-4">Your compassionate companion for tracking pain, mood, and wellness journey</p>
                 {% if not user.is_authenticated %}
                     <div class="d-flex justify-content-center gap-3">
-                        <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">
-                            <i class="bi bi-person-plus"></i> Get Started Free
+                        <a href="{% url 'account_signup' %}" class="btn btn-accent btn-lg">
+                            Get Started Free
                         </a>
                         <a href="{% url 'account_login' %}" class="btn btn-outline-dark btn-lg">
-                            <i class="bi bi-box-arrow-in-right"></i> Sign In
+                            Sign In
                         </a>
                     </div>
                 {% else %}
                     <div class="d-flex justify-content-center gap-3">
-                        <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg">
-                            <i class="bi bi-speedometer2"></i> Go to Dashboard
+                        <a href="{% url 'dashboard' %}" class="btn btn-accent btn-lg">
+                            Go to Dashboard
                         </a>
                         <a href="{% url 'entries' %}" class="btn btn-outline-dark btn-lg">
-                            <i class="bi bi-journal-text"></i> View My Entries
+                            View My Entries
                         </a>
                     </div>
                 {% endif %}
@@ -38,7 +38,7 @@
     <div class="container">
         <div class="row text-center mb-5">
             <div class="col-12">
-                <h2 class="mb-4">Why Choose Gentle Journal?</h2>
+                <h2 class="m-4">Why Choose Gentle Journal?</h2>
                 <p class="text-muted">A gentle approach to understanding and managing your pain</p>
             </div>
         </div>

@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.views import generic
 from datetime import datetime
 from .forms import DiaryEntryForm, QuickEntryForm
-from .models import DiaryEntry
+from .models import DiaryEntry, ContactEmail
 
 # Create your views here.
 def homepage(request):

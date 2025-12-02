@@ -51,6 +51,10 @@ div.container.top {
     margin-top: 20px;
 }
 
+.feature-card {
+    background-color: rgba(200, 200, 200, 0.4);
+}
+
 hr {
     border: solid 1px var(--text-color-secondary);
     margin-top: 20px;
@@ -124,15 +128,22 @@ hr {
     cursor: pointer;
 }
 
+.textinput, .numberinput, .textarea, .emailinput {
+    border: var(--text-color-primary) 1px solid;
+}
+
 .modal-body p {
     margin-bottom: 1rem;
     font-size: 0.95rem;
 }
 
-.textinput, .numberinput, .textarea, .emailinput {
-    border: var(--text-color-primary) 1px solid;
+.modal-header, .modal-footer {
+    background-color: var(--primary-color);
 }
 
+#modalTriggers, #modalNotes {
+    height: 50px;
+}
 
 /* Media Queries */
 

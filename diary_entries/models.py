@@ -27,6 +27,8 @@ class ContactEmail(models.Model):
     email = models.EmailField()
     message = models.TextField()
     read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Enquiry from {self.name}"

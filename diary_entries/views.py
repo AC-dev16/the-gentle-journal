@@ -3,13 +3,39 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import generic
 from datetime import datetime
-from .forms import DiaryEntryForm, QuickEntryForm
+from .forms import DiaryEntryForm, QuickEntryForm, ContactEmailForm
 from .models import DiaryEntry, ContactEmail
 
 # Create your views here.
 def homepage(request):
     """Homepage with site information and auth buttons"""
     return render(request, 'diary_entries/homepage.html')
+
+def contact(request):
+    """
+    Contact page with enquires form
+
+    **Context**
+    ''contact_form''
+        An instance of :form: 'diary_entries.ContactEmailForm'.
+
+    **Template**
+        :template:'diary_entries/contact_form.html'.
+    """
+
+    if request.method == "POST":
+        contact_form = ContactEmailForm(data=request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Your message has been received! I endeavour to respond within 2 working days.'
+            )
+            return redirect('contact_email')  # Redirect after successful submission
+    else:
+        contact_form = ContactEmailForm()
+
+    return render(request, 'diary_entries/contact_form.html', {'contact_form': contact_form})
 
 class DiaryEntryListView(generic.ListView):
     model = DiaryEntry

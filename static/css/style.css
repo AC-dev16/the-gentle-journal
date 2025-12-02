@@ -15,12 +15,14 @@ body {
     background: url(../images/gj-bgbig.webp) no-repeat center center fixed;
     background-size: cover;
     font-family: var(--secondary-font);
+    font-size: 1rem;
     color: var(--text-color-primary);
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .navbar {
@@ -56,9 +58,14 @@ hr {
 
 .card.quick-entry-card, .recent-entries-card {
     background: transparent;
+    background-color: rgba(200, 200, 200, 0.1);
     border: 1px solid grey;
     border-radius: 10px;
     box-shadow: var(--text-color-primary) 1px 1px 0;
+}
+
+.quick-entry-btn {
+    margin: 35.39px 0px;
 }
 
 .recent-entry {
@@ -87,6 +94,7 @@ hr {
 /* Ensure entry cards are clickable */
 .entry-card {
     border: 1px solid grey;
+    background-color: rgba(200, 200, 200, 0.1);
     padding: 10px;
     border-radius: 10px;
     box-shadow: grey 1px 1px 0;
@@ -121,7 +129,7 @@ hr {
     font-size: 0.95rem;
 }
 
-.textinput, .numberinput, .textarea {
+.textinput, .numberinput, .textarea, .emailinput {
     border: var(--text-color-primary) 1px solid;
 }
 

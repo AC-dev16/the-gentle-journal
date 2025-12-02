@@ -23,7 +23,50 @@
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        
+                        <!-- Location Field -->
+                        <div class="mb-3">
+                            {{ form.location|as_crispy_field }}
+                        </div>
+
+                        <div class="row">
+                            <!-- Pain Level Slider -->
+                            <div class="col-md-6 mb-3">
+                                <label for="painLevelSlider" class="form-label">Pain Level</label>
+                                <div class="slider-container" id="detailPainSliderContainer">
+                                    <div class="slider-value" id="detailPainSliderValue">0</div>
+                                    {{ form.pain_level }}
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">No pain</small>
+                                    <small class="text-muted">Severe pain</small>
+                                </div>
+                            </div>
+                            
+                            <!-- Mood Level Slider -->
+                            <div class="col-md-6 mb-3">
+                                <label for="moodLevelSlider" class="form-label">Mood Level</label>
+                                <div class="slider-container">
+                                    <div class="slider-value" id="detailMoodSliderValue">5</div>
+                                    {{ form.mood_level }}
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">Very low</small>
+                                    <small class="text-muted">Excellent</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Other Fields -->
+                        <div class="mb-3">
+                            {{ form.sleep_hours|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.triggers|as_crispy_field }}
+                        </div>
+                        <div class="mb-4">
+                            {{ form.notes|as_crispy_field }}
+                        </div>
                         
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{% url 'entries' %}" class="btn btn-outline-secondary">
@@ -43,5 +86,47 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Detailed form sliders
+    const detailPainSlider = document.getElementById('painLevelSlider');
+    const detailPainValue = document.getElementById('detailPainSliderValue');
+    const detailPainContainer = document.getElementById('detailPainSliderContainer');
+    
+    const detailMoodSlider = document.getElementById('moodLevelSlider');
+    const detailMoodValue = document.getElementById('detailMoodSliderValue');
+    
+    if (detailPainSlider && detailPainValue) {
+        function updateDetailPainSlider() {
+            const value = detailPainSlider.value;
+            detailPainValue.textContent = value;
+            const percent = (value / 10) * 100;
+            detailPainValue.style.left = percent + '%';
+            
+            detailPainContainer.className = 'slider-container';
+            if (value <= 2) detailPainContainer.classList.add('pain-slider-0-2');
+            else if (value <= 5) detailPainContainer.classList.add('pain-slider-3-5');
+            else if (value <= 8) detailPainContainer.classList.add('pain-slider-6-8');
+            else detailPainContainer.classList.add('pain-slider-9-10');
+        }
+        
+        detailPainSlider.addEventListener('input', updateDetailPainSlider);
+        updateDetailPainSlider();
+    }
+    
+    if (detailMoodSlider && detailMoodValue) {
+        function updateDetailMoodSlider() {
+            const value = detailMoodSlider.value;
+            detailMoodValue.textContent = value;
+            const percent = ((value - 1) / 9) * 100;
+            detailMoodValue.style.left = percent + '%';
+        }
+        
+        detailMoodSlider.addEventListener('input', updateDetailMoodSlider);
+        updateDetailMoodSlider();
+    }
+});
+</script>
 <script src="{% static 'js/script.js' %}"></script>
+<script src="https://kit.fontawesome.com/87e7ffe589.js" crossorigin="anonymous"></script>
 {% endblock %}

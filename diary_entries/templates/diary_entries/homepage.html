@@ -8,7 +8,7 @@
     <!-- Hero Section -->
     <div class="hero-section text-center">
         <div class="container my-4">
-            <h1 class="display-4 fw-bold mb-4 pt-4">Welcome to The Gentle Journal</h1>
+            <h1 class="display-4 fw-bold mb-4 pt-4">Welcome to The Gentle Journal <br> <i class="fa-brands fa-pagelines"></i></h1>
             <div class="green-bar">
                 <p class="lead mb-4">Your compassionate companion for tracking pain, mood, and wellness journey</p>
                 {% if not user.is_authenticated %}
@@ -77,5 +77,9 @@
         </div>
     </div>
 
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+<script src="https://kit.fontawesome.com/87e7ffe589.js" crossorigin="anonymous"></script>
 {% endblock %}
 

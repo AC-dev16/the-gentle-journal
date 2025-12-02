@@ -10,7 +10,7 @@
 <div class="dashboard-header text-center">
     <div class="container">
         <h1 class="display-4 fw-bold mb-3 pt-4">
-            Welcome, {{ user.first_name|default:user.username }}!
+            Welcome, {{ user.first_name|default:user.username }}! <i class="fa-brands fa-pagelines"></i>
         </h1>
         <p class="lead mb-4">How are you feeling today? Take a moment to check in with yourself.</p>
     </div>
@@ -36,16 +36,30 @@
                             {{ form.location|as_crispy_field }}
                         </div>
                         
-                        <!-- Pain Level Field -->
+                        <!-- Pain Level Slider -->
                         <div class="col-md-6">
-                            {{ form.pain_level|as_crispy_field }}
-                            <div class="form-text">0 = No pain, 10 = Severe pain</div>
+                            <label for="quickPainLevelSlider" class="form-label">Pain Level</label>
+                            <div class="slider-container" id="painSliderContainer">
+                                <div class="slider-value" id="painSliderValue">0</div>
+                                {{ form.pain_level }}
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">No pain</small>
+                                <small class="text-muted">Severe pain</small>
+                            </div>
                         </div>
                         
-                        <!-- Mood Level Field -->
+                        <!-- Mood Level Slider -->
                         <div class="col-md-6">
-                            {{ form.mood_level|as_crispy_field }}
-                            <div class="form-text">1 = Very low, 10 = Excellent</div>
+                            <label for="quickMoodLevelSlider" class="form-label">Mood Level</label>
+                            <div class="slider-container" id="moodSliderContainer">
+                                <div class="slider-value" id="moodSliderValue">5</div>
+                                {{ form.mood_level }}
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small class="text-muted">Very low</small>
+                                <small class="text-muted">Excellent</small>
+                            </div>
                         </div>
                         
                         <div class="col-12 quick-entry-btn">
@@ -93,5 +107,55 @@
 {% endblock %}
 
 {% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Pain level slider functionality
+    const painSlider = document.getElementById('quickPainLevelSlider');
+    const painValue = document.getElementById('painSliderValue');
+    const painContainer = document.getElementById('painSliderContainer');
+    
+    // Mood level slider functionality  
+    const moodSlider = document.getElementById('quickMoodLevelSlider');
+    const moodValue = document.getElementById('moodSliderValue');
+    
+    if (painSlider && painValue) {
+        // Update pain slider value and position
+        function updatePainSlider() {
+            const value = painSlider.value;
+            painValue.textContent = value;
+            
+            // Position the value indicator
+            const percent = (value / 10) * 100;
+            painValue.style.left = percent + '%';
+            
+            // Update color coding
+            painContainer.className = 'slider-container';
+            if (value <= 2) painContainer.classList.add('pain-slider-0-2');
+            else if (value <= 5) painContainer.classList.add('pain-slider-3-5');
+            else if (value <= 8) painContainer.classList.add('pain-slider-6-8');
+            else painContainer.classList.add('pain-slider-9-10');
+        }
+        
+        painSlider.addEventListener('input', updatePainSlider);
+        updatePainSlider(); // Initialize
+    }
+    
+    if (moodSlider && moodValue) {
+        // Update mood slider value and position
+        function updateMoodSlider() {
+            const value = moodSlider.value;
+            moodValue.textContent = value;
+            
+            // Position the value indicator (1-10 scale)
+            const percent = ((value - 1) / 9) * 100;
+            moodValue.style.left = percent + '%';
+        }
+        
+        moodSlider.addEventListener('input', updateMoodSlider);
+        updateMoodSlider(); // Initialize
+    }
+});
+</script>
 <script src="{% static 'js/script.js' %}"></script>
+<script src="https://kit.fontawesome.com/87e7ffe589.js" crossorigin="anonymous"></script>
 {% endblock %}

@@ -10,7 +10,7 @@
 <div class="dashboard-header text-center">
     <div class="container">
         <h1 class="display-4 fw-bold mb-3 pt-4">
-            Welcome, {{ user.first_name|default:user.username }}! <i class="fa-brands fa-pagelines"></i>
+            Welcome back, {{ user.first_name|default:user.username }}! <i class="fa-brands fa-pagelines"></i>
         </h1>
         <p class="lead mb-4">How are you feeling today? Take a moment to check in with yourself.</p>
     </div>
@@ -80,7 +80,7 @@
             <div class="card recent-entries-card">
                 <div class="card-header bg-transparent border-0 pt-4">
                     <h5 class="mb-0 fw-bold">
-                        Recent Entries
+                        Recent Entries <i class="fa-solid fa-book"></i>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -93,7 +93,7 @@
                         </div>
                         {% endfor %}
                         <a href="{% url 'entries' %}" class="btn btn-accent-outline btn-sm">
-                            <i class="bi bi-journal-text"></i> View All Entries
+                            View All Entries
                         </a>
                     {% else %}
                         <p class="text-muted">No entries yet. Create your first entry above!</p>

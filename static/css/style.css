@@ -60,7 +60,7 @@ hr {
     margin-top: 20px;
 }
 
-.card.quick-entry-card, .recent-entries-card {
+.card.quick-entry-card, .recent-entries-card, .entry-form-card {
     background: transparent;
     background-color: rgba(200, 200, 200, 0.1);
     border: 1px solid grey;
@@ -76,7 +76,7 @@ hr {
     border-top: solid 1px black;
 }
 
-.btn-accent, .btn-new:hover, .entry-card:hover {
+.btn-accent, .btn-new:hover, .entry-card:hover, .btn-accent-outline:hover {
     background-color: var(--text-color-primary);
     color: white;
     padding: 6px 12px;
@@ -84,7 +84,7 @@ hr {
     cursor: pointer;
 }
 
-.btn-accent-outline {
+.btn-accent-outline, .btn-accent:hover {
     border: var(--text-color-primary) 2px solid;
     color: var(--text-color-primary);
     font-weight: bold;

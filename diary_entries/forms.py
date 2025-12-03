@@ -21,6 +21,16 @@ class DiaryEntryForm(forms.ModelForm):
                 'step': 1,
                 'class': 'form-range',
                 'id': 'moodLevelSlider'
+            }),
+            'triggers': forms.Textarea(attrs={
+                'rows': 5,
+                'maxlength': 300,  # HTML5 maxlength attribute
+                'placeholder': 'What triggered your pain today?'
+            }),
+            'notes': forms.Textarea(attrs={
+                'rows': 5,
+                'maxlength': 1000,  # HTML5 maxlength attribute
+                'placeholder': 'Additional notes about your condition...'
             })
         }
 

@@ -53,6 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // MODAL HANDLING
     initializeModalHandling();
+
+    // CHARACTER COUNTERS
+    addCharacterCounters();
 });
 
 function initializeAllSliders() {
@@ -215,4 +218,38 @@ function initializeModalHandling() {
             });
         });
     }
+}
+
+function addCharacterCounters() {
+    const triggersField = document.querySelector('textarea[name="triggers"]');
+    const notesField = document.querySelector('textarea[name="notes"]');
+    
+    if (triggersField) {
+        addCounter(triggersField, 300);
+    }
+    
+    if (notesField) {
+        addCounter(notesField, 1000);
+    }
+}
+
+function addCounter(field, maxLength) {
+    const counter = document.createElement('div');
+    counter.className = 'character-counter text-muted small';
+    counter.style.textAlign = 'right';
+    
+    function updateCounter() {
+        const remaining = maxLength - field.value.length;
+        counter.textContent = `${remaining} characters remaining`;
+        
+        if (remaining < 50) {
+            counter.style.color = '#dc3545'; // Red warning
+        } else {
+            counter.style.color = '#6c757d'; // Normal gray
+        }
+    }
+    
+    field.addEventListener('input', updateCounter);
+    field.parentNode.appendChild(counter);
+    updateCounter(); // Initialize
 }

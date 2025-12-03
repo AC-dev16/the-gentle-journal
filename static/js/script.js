@@ -159,6 +159,7 @@ function initializeModalHandling() {
                 }
                 
                 // Get data from the clicked card
+                const entryId = this.getAttribute('data-entry-id');
                 const location = this.getAttribute('data-location');
                 const painLevel = this.getAttribute('data-pain-level');
                 const moodLevel = this.getAttribute('data-mood-level');
@@ -177,6 +178,12 @@ function initializeModalHandling() {
                     document.getElementById('modalTriggers').textContent = triggers;
                     document.getElementById('modalNotes').textContent = notes;
                     document.getElementById('modalCreatedAt').textContent = createdAt;
+                    
+                    // Update the Edit button URL dynamically
+                    const editButton = document.getElementById('modalEditButton');
+                    if (editButton && entryId) {
+                        editButton.href = `/entries/edit/${entryId}/`;
+                    }
                     
                     // Show the modal
                     const bootstrapModal = new bootstrap.Modal(modal);

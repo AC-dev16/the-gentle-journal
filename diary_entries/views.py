@@ -69,16 +69,20 @@ def dashboard(request):
     current_hour = datetime.now().hour
     if current_hour < 12:
         greeting = "morning"
+        greeting_message = "Hope you're having a great start to your day!"
     elif current_hour < 18:
         greeting = "afternoon"
+        greeting_message = "Hope your day is going well!"
     else:
         greeting = "evening"
+        greeting_message = "Hope you've had a wonderful day!"
 
     context = {
         'form': form,
         'entries': user_entries,
         'user': request.user,
         'greeting': greeting,
+        'greeting_message': greeting_message,
     }
 
     return render(request, 'diary_entries/dashboard.html', context)

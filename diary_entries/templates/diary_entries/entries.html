@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="page-header text-center mb-4">
+    <div class="page-header text-center mb-4 pt-4">
         <h1 class="display-4 fw-bold">My Entries <i class="fa-brands fa-pagelines"></i></h1>
         <p class="lead">Your wellness journey</p>
     </div>
@@ -25,6 +25,7 @@
         <div class="entry-card p-3 mb-2" 
              data-bs-toggle="modal" 
              data-bs-target="#readEntryModal"
+             data-entry-id="{{ entry.id }}"
              data-location="{{ entry.location }}"
              data-pain-level="{{ entry.pain_level }}"
              data-mood-level="{{ entry.mood_level }}"
@@ -69,7 +70,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="readEntryModalLabel">Entry Details</h5>
+                <h5 class="modal-title" id="readEntryModalLabel">Entry Details <i class="fa-brands fa-pagelines"></i></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -105,8 +106,11 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <a href="#" id="modalEditButton" class="btn btn-accent-outline">
+                    Edit
+                </a>
                 <button type="button" class="btn btn-accent" data-bs-dismiss="modal">
-                    <i class="bi bi-x-circle"></i> Close
+                    Close
                 </button>
             </div>
         </div>

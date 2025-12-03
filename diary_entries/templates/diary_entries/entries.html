@@ -14,7 +14,7 @@
         <h4>All Entries ({{ entries|length }})</h4>
         <div>
             <a href="{% url 'entry_create' %}" class="btn btn-new">
-                New Entry
+                New Entry <i class="fa-solid fa-plus fa-sm"></i>
             </a>
         </div>
     </div>
@@ -42,15 +42,15 @@
                         <div class="text-muted small">Mood: {{ entry.mood_level }}/10</div>
                     {% endif %}
                 </div>
-                <!-- ADD onclick="event.stopPropagation()" HERE -->
+                
                 <div class="entry-actions" onclick="event.stopPropagation();">
-                    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-outline-secondary btn-sm">
-                        <i class="bi bi-pencil"></i>
+                    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-sm">
+                        <i class="fa-solid fa-pen fa-sm"></i>
                     </a>
                     <a href="{% url 'delete_entry' entry.id %}" 
-                       class="btn btn-outline-danger btn-sm"
+                       class="btn btn-sm"
                        onclick="return confirm('Are you sure?')">
-                        <i class="bi bi-trash3"></i>
+                        <i class="fa-regular fa-trash-can fa-sm"></i>
                     </a>
                 </div>
             </div>

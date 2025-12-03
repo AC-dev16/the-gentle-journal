@@ -49,7 +49,7 @@
                         {% if user.is_authenticated %}
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                    <i class="bi bi-person-circle"></i> Hello, {{ user.username }}
+                                    <i class="fa-solid fa-user fa-sm"></i> Hello, {{ user.username }}
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{% url 'contact_email' %}">Contact</a></li>

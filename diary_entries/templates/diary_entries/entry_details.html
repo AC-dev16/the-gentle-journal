@@ -86,47 +86,6 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Detailed form sliders
-    const detailPainSlider = document.getElementById('painLevelSlider');
-    const detailPainValue = document.getElementById('detailPainSliderValue');
-    const detailPainContainer = document.getElementById('detailPainSliderContainer');
-    
-    const detailMoodSlider = document.getElementById('moodLevelSlider');
-    const detailMoodValue = document.getElementById('detailMoodSliderValue');
-    
-    if (detailPainSlider && detailPainValue) {
-        function updateDetailPainSlider() {
-            const value = detailPainSlider.value;
-            detailPainValue.textContent = value;
-            const percent = (value / 10) * 100;
-            detailPainValue.style.left = percent + '%';
-            
-            detailPainContainer.className = 'slider-container';
-            if (value <= 2) detailPainContainer.classList.add('pain-slider-0-2');
-            else if (value <= 5) detailPainContainer.classList.add('pain-slider-3-5');
-            else if (value <= 8) detailPainContainer.classList.add('pain-slider-6-8');
-            else detailPainContainer.classList.add('pain-slider-9-10');
-        }
-        
-        detailPainSlider.addEventListener('input', updateDetailPainSlider);
-        updateDetailPainSlider();
-    }
-    
-    if (detailMoodSlider && detailMoodValue) {
-        function updateDetailMoodSlider() {
-            const value = detailMoodSlider.value;
-            detailMoodValue.textContent = value;
-            const percent = ((value - 1) / 9) * 100;
-            detailMoodValue.style.left = percent + '%';
-        }
-        
-        detailMoodSlider.addEventListener('input', updateDetailMoodSlider);
-        updateDetailMoodSlider();
-    }
-});
-</script>
 <script src="{% static 'js/script.js' %}"></script>
-<!-- <script src="https://kit.fontawesome.com/87e7ffe589.js" crossorigin="anonymous"></script> -->
+<script src="https://kit.fontawesome.com/87e7ffe589.js" crossorigin="anonymous"></script>
 {% endblock %}

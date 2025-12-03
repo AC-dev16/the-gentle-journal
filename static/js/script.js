@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Only run on pages with diary entry forms
+    // Form validation and focus handling
     if (document.querySelector('.entry-form-card') || document.querySelector('input[name="location"]')) {
         
         // Auto-focus on location input when page loads
@@ -48,7 +48,100 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // SINGLE MODAL HANDLING APPROACH
+    // UNIFIED SLIDER INITIALIZATION
+    initializeAllSliders();
+
+    // MODAL HANDLING
+    initializeModalHandling();
+});
+
+function initializeAllSliders() {
+    // Define all possible slider configurations
+    const sliderConfigs = [
+        // Dashboard sliders
+        {
+            sliderId: 'quickPainLevelSlider',
+            valueId: 'painSliderValue',
+            containerId: 'painSliderContainer',
+            type: 'pain',
+            min: 0,
+            max: 10
+        },
+        {
+            sliderId: 'quickMoodLevelSlider',
+            valueId: 'moodSliderValue',
+            containerId: 'moodSliderContainer',
+            type: 'mood',
+            min: 1,
+            max: 10
+        },
+        // Detail form sliders
+        {
+            sliderId: 'painLevelSlider',
+            valueId: 'detailPainSliderValue',
+            containerId: 'detailPainSliderContainer',
+            type: 'pain',
+            min: 0,
+            max: 10
+        },
+        {
+            sliderId: 'moodLevelSlider',
+            valueId: 'detailMoodSliderValue',
+            containerId: null, // No container for detail mood slider
+            type: 'mood',
+            min: 1,
+            max: 10
+        }
+    ];
+
+    sliderConfigs.forEach(config => {
+        initializeSlider(config);
+    });
+}
+
+function initializeSlider(config) {
+    const slider = document.getElementById(config.sliderId);
+    const valueDisplay = document.getElementById(config.valueId);
+    const container = config.containerId ? document.getElementById(config.containerId) : null;
+
+    if (!slider || !valueDisplay) return;
+
+    function updateSlider() {
+        const value = parseInt(slider.value);
+        valueDisplay.textContent = value;
+
+        // Calculate position based on slider type
+        let percent;
+        if (config.type === 'mood' && config.min === 1) {
+            percent = ((value - 1) / (config.max - config.min)) * 100;
+        } else {
+            percent = (value / config.max) * 100;
+        }
+        
+        valueDisplay.style.left = percent + '%';
+
+        // Apply color coding for pain sliders
+        if (config.type === 'pain' && container) {
+            updatePainColorCoding(container, value);
+        }
+    }
+
+    slider.addEventListener('input', updateSlider);
+    updateSlider(); // Initialize
+}
+
+function updatePainColorCoding(container, value) {
+    // Remove existing classes
+    container.classList.remove('pain-slider-0-2', 'pain-slider-3-5', 'pain-slider-6-8', 'pain-slider-9-10');
+    
+    // Add appropriate class based on value
+    if (value <= 2) container.classList.add('pain-slider-0-2');
+    else if (value <= 5) container.classList.add('pain-slider-3-5');
+    else if (value <= 8) container.classList.add('pain-slider-6-8');
+    else container.classList.add('pain-slider-9-10');
+}
+
+function initializeModalHandling() {
     // Handle entry cards modal - only on entries page
     const entryCards = document.querySelectorAll('.entry-card');
     
@@ -91,5 +184,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
+        // Handle delete button hover state reset
+        const deleteButtons = document.querySelectorAll('a[href*="delete"]');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const entryCard = this.closest('.entry-card');
+                const deleteUrl = this.getAttribute('href');
+                
+                if (confirm('Are you sure you want to delete this entry?')) {
+                    window.location.href = deleteUrl;
+                } else {
+                    // Reset hover state cleanly
+                    entryCard.blur();
+                    setTimeout(() => {
+                        entryCard.style.transform = '';
+                        entryCard.style.boxShadow = '';
+                        entryCard.style.borderColor = '';
+                    }, 50);
+                }
+            });
+        });
     }
-});
+}

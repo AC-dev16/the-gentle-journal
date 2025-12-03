@@ -107,55 +107,6 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Pain level slider functionality
-    const painSlider = document.getElementById('quickPainLevelSlider');
-    const painValue = document.getElementById('painSliderValue');
-    const painContainer = document.getElementById('painSliderContainer');
-    
-    // Mood level slider functionality  
-    const moodSlider = document.getElementById('quickMoodLevelSlider');
-    const moodValue = document.getElementById('moodSliderValue');
-    
-    if (painSlider && painValue) {
-        // Update pain slider value and position
-        function updatePainSlider() {
-            const value = painSlider.value;
-            painValue.textContent = value;
-            
-            // Position the value indicator
-            const percent = (value / 10) * 100;
-            painValue.style.left = percent + '%';
-            
-            // Update color coding
-            painContainer.className = 'slider-container';
-            if (value <= 2) painContainer.classList.add('pain-slider-0-2');
-            else if (value <= 5) painContainer.classList.add('pain-slider-3-5');
-            else if (value <= 8) painContainer.classList.add('pain-slider-6-8');
-            else painContainer.classList.add('pain-slider-9-10');
-        }
-        
-        painSlider.addEventListener('input', updatePainSlider);
-        updatePainSlider(); // Initialize
-    }
-    
-    if (moodSlider && moodValue) {
-        // Update mood slider value and position
-        function updateMoodSlider() {
-            const value = moodSlider.value;
-            moodValue.textContent = value;
-            
-            // Position the value indicator (1-10 scale)
-            const percent = ((value - 1) / 9) * 100;
-            moodValue.style.left = percent + '%';
-        }
-        
-        moodSlider.addEventListener('input', updateMoodSlider);
-        updateMoodSlider(); // Initialize
-    }
-});
-</script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="https://kit.fontawesome.com/87e7ffe589.js" crossorigin="anonymous"></script>
 {% endblock %}

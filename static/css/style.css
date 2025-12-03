@@ -23,6 +23,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .navbar {
@@ -141,9 +142,9 @@ hr {
     background-color: var(--primary-color);
 }
 
-#modalTriggers, #modalNotes {
+/* #modalTriggers, #modalNotes {
     height: 50px;
-}
+} */
 
 /* Range Slider Styling */
 .form-range {
@@ -261,4 +262,22 @@ hr {
     .card.feature-card {
         max-height: 210px;
     }
+}
+
+.modal-readonly-textarea {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    resize: vertical; /* Allow user to resize */
+    min-height: 100px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+.modal-readonly-textarea:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
 }

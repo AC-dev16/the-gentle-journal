@@ -67,7 +67,7 @@
 <!-- Read Modal -->
 
 <div class="modal fade" id="readEntryModal" tabindex="-1" aria-labelledby="readEntryModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="readEntryModalLabel">Entry Details <i class="fa-brands fa-pagelines"></i></h5>
@@ -97,11 +97,17 @@
                     </div>
                     <div class="col-12">
                         <h6>Triggers</h6>
-                        <p id="modalTriggers" class="text-muted bg-light p-2 rounded"></p>
+                        <textarea id="modalTriggers" 
+                                  class="form-control modal-readonly-textarea" 
+                                  rows="3" 
+                                  readonly></textarea>
                     </div>
                     <div class="col-12">
                         <h6>Notes</h6>
-                        <p id="modalNotes" class="text-muted bg-light p-2 rounded"></p>
+                        <textarea id="modalNotes" 
+                                  class="form-control modal-readonly-textarea" 
+                                  rows="4" 
+                                  readonly></textarea>
                     </div>
                 </div>
             </div>

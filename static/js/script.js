@@ -178,8 +178,8 @@ function initializeModalHandling() {
                     document.getElementById('modalPainLevel').textContent = painLevel + '/10';
                     document.getElementById('modalMoodLevel').textContent = moodLevel + '/10';
                     document.getElementById('modalSleepHours').textContent = sleepHours + ' hours';
-                    document.getElementById('modalTriggers').textContent = triggers;
-                    document.getElementById('modalNotes').textContent = notes;
+                    document.getElementById('modalTriggers').value = triggers || 'No triggers specified';
+                    document.getElementById('modalNotes').value = notes || 'No additional notes';
                     document.getElementById('modalCreatedAt').textContent = createdAt;
                     
                     // Update the Edit button URL dynamically

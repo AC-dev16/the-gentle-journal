@@ -38,10 +38,14 @@
             <!-- Entry content -->
             <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
-                    <h6>Location: {{ entry.location }} - Pain: {{ entry.pain_level }}/10</h6>
-                    <small class="text-muted">{{ entry.created_at|date:"M d, Y H:i" }}</small>
+                    <h5 class="fw-bold">{{ entry.created_at|date:"M d, Y" }}</h5>
+                    <p class="mb-0">Location: {{ entry.location }} - Pain: {{ entry.pain_level }}/10</p>
+                    
                     {% if entry.mood_level %}
-                        <div class="text-muted small">Mood: {{ entry.mood_level }}/10</div>
+                        <div class="entry-metadata">
+                            <small>Mood: {{ entry.mood_level }}/10</small>
+                            <small>Sleep: {{ entry.sleep_hours }}</small>
+                        </div>
                     {% endif %}
                 </div>
                 
@@ -76,15 +80,15 @@
             </div>
             <div class="modal-body">
                 <div class="row g-3">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h6>Location</h6>
                         <p id="modalLocation" class="text-muted"></p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <h6>Pain Level</h6>
                         <p id="modalPainLevel" class="text-muted"></p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <h6>Mood Level</h6>
                         <p id="modalMoodLevel" class="text-muted"></p>
                     </div>

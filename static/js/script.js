@@ -182,7 +182,7 @@ function initializeModalHandling() {
                     document.getElementById('modalTriggers').value = triggers || 'No triggers specified';
                     document.getElementById('modalNotes').value = notes || 'No additional notes';
                     document.getElementById('modalCreatedAt').textContent = createdAt;
-                    document.getElementById('modalUpdatedAt').textContent = updatedAt; // Add this line
+                    document.getElementById('modalUpdatedAt').textContent = updatedAt;
                     
                     // Update the Edit button URL dynamically
                     const editButton = document.getElementById('modalEditButton');
@@ -197,29 +197,39 @@ function initializeModalHandling() {
             });
         });
 
-        // Handle delete button hover state reset
-        const deleteButtons = document.querySelectorAll('a[href*="delete"]');
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const entryCard = this.closest('.entry-card');
-                const deleteUrl = this.getAttribute('href');
-                
-                if (confirm('Are you sure you want to delete this entry?')) {
-                    window.location.href = deleteUrl;
-                } else {
-                    // Reset hover state cleanly
-                    entryCard.blur();
-                    setTimeout(() => {
-                        entryCard.style.transform = '';
-                        entryCard.style.boxShadow = '';
-                        entryCard.style.borderColor = '';
-                    }, 50);
-                }
-            });
-        });
+        // REPLACE THE OLD DELETE BUTTON HANDLING WITH THIS NEW VERSION
+        initializeDeleteModal();
     }
+}
+
+// NEW FUNCTION: Handle custom delete confirmation modal
+function initializeDeleteModal() {
+    const deleteButtons = document.querySelectorAll('.delete-entry-btn');
+    
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Get entry information
+            const deleteUrl = this.getAttribute('href');
+            const entryLocation = this.getAttribute('data-entry-location');
+            const entryDate = this.getAttribute('data-entry-date');
+            
+            // Update modal content with entry details
+            const modal = document.getElementById('deleteConfirmModal');
+            const modalBody = modal.querySelector('.modal-body p');
+            modalBody.innerHTML = `Are you sure you want to delete your diary entry from <strong>${entryLocation}</strong> on <strong>${entryDate}</strong>?`;
+            
+            // Set the delete URL on the confirm button
+            const confirmButton = document.getElementById('confirmDeleteButton');
+            confirmButton.href = deleteUrl;
+            
+            // Show the custom modal
+            const deleteModal = new bootstrap.Modal(modal);
+            deleteModal.show();
+        });
+    });
 }
 
 function addCharacterCounters() {

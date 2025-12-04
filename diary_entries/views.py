@@ -117,7 +117,7 @@ def edit_entry(request, entry_id):
             messages.success(request, 'Diary entry updated successfully!')
             return redirect('entries')
         else:
-            messages.error(request, 'Please correct the errors below.')
+            messages.error(request, 'Error updating entry.')
     else:
         form = DiaryEntryForm(instance=entry)
 

@@ -170,6 +170,7 @@ function initializeModalHandling() {
                 const triggers = this.getAttribute('data-triggers');
                 const notes = this.getAttribute('data-notes');
                 const createdAt = this.getAttribute('data-created-at');
+                const updatedAt = this.getAttribute('data-updated-at');
                 
                 // Update modal content
                 const modal = document.getElementById('readEntryModal');
@@ -181,6 +182,7 @@ function initializeModalHandling() {
                     document.getElementById('modalTriggers').value = triggers || 'No triggers specified';
                     document.getElementById('modalNotes').value = notes || 'No additional notes';
                     document.getElementById('modalCreatedAt').textContent = createdAt;
+                    document.getElementById('modalUpdatedAt').textContent = updatedAt; // Add this line
                     
                     // Update the Edit button URL dynamically
                     const editButton = document.getElementById('modalEditButton');

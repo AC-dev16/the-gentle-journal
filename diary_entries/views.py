@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from datetime import datetime, timedelta
 from django.db.models import Avg, Count
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import DiaryEntryForm, QuickEntryForm, ContactEmailForm
 from .models import DiaryEntry, ContactEmail
 
@@ -40,14 +41,19 @@ def contact(request):
 
     return render(request, 'diary_entries/contact_form.html', {'contact_form': contact_form})
 
-class DiaryEntryListView(generic.ListView):
+class DiaryEntryListView(LoginRequiredMixin, generic.ListView):
     model = DiaryEntry
-    template_name = 'diary_entries/entry_details.html'
+    template_name = 'diary_entries/entries.html'  # Change this to point to your actual template
     context_object_name = 'entries'
     paginate_by = 10
     
     def get_queryset(self):
         return DiaryEntry.objects.filter(user=self.request.user).order_by('-created_at')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Add any additional context data you need
+        return context
 
 # User dashboard view with quick entry form
 @login_required

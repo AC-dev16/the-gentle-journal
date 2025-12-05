@@ -300,6 +300,92 @@ hr {
 .pain-slider-6-8 .slider-value { background-color: #fd7e14; }
 .pain-slider-9-10 .slider-value { background-color: #dc3545; }
 
+/* Field Footer Layout */
+.field-footer {
+    padding-top: 0.25rem;
+    border-top: 1px solid transparent;
+    transition: border-color 0.2s ease-in-out;
+}
+
+/* Character Counter Styling */
+.character-counter {
+    font-size: 0.875rem;
+    margin: 0;
+    transition: color 0.2s ease-in-out;
+}
+
+.character-counter.warning {
+    color: #dc3545 !important;
+    font-weight: 500;
+}
+
+/* Speech Button Styling */
+.speech-btn {
+    border: 1px solid var(--text-color-secondary);
+    background-color: var(--primary-color);
+    color: var(--text-color-primary);
+    padding: 0.375rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: all 0.2s ease-in-out;
+    min-width: 44px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.speech-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.speech-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(58, 125, 125, 0.25);
+}
+
+/* Active/Listening State */
+.speech-btn.listening {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+.speech-btn.listening:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+/* Unsupported Browser Style */
+.speech-btn.speech-unsupported {
+    background-color: #f8f9fa;
+    border-color: #6c757d;
+    color: #6c757d;
+}
+
+.speech-btn.speech-unsupported:hover {
+    background-color: #e9ecef;
+    color: var(--text-color-primary);
+    border-color: var(--text-color-primary);
+}
+
+/* Textarea focus states */
+textarea:focus + .field-footer {
+    border-color: var(--secondary-color);
+}
+
+/* Pulse animation for recording */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
 /* Media Queries */
 
 /* Small screen size 320px */
@@ -318,5 +404,26 @@ hr {
 @media screen and (max-width: 576px) {
     .entry-metadata {
         gap: 1rem;
+    }
+    
+    .field-footer {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch !important;
+    }
+    
+    .speech-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-text {
+        display: inline !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .btn-text {
+        display: none !important;
     }
 }

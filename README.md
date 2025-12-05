@@ -94,6 +94,7 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 #### Icons
 - Font Awesome icons for consistent visual language
 - Pagelines icon (🍃) as brand symbol representing growth and healing
+- Favicon created by downloading matching Font Awesome Pagelines icon from ICONIFY as a png then importing it to favicon.io
 
 ## Technologies Used
 

@@ -54,9 +54,74 @@ document.addEventListener('DOMContentLoaded', function() {
     // MODAL HANDLING
     initializeModalHandling();
 
-    // CHARACTER COUNTERS
-    addCharacterCounters();
+    // BUILT-IN CHARACTER COUNTERS AND SPEECH BUTTONS
+    initializeBuiltInControls();
+
+    // SPEECH-TO-TEXT (if you still have the old version, remove it)
+    // Remove the old setTimeout speech initialization
 });
+
+// Initialize built-in character counters and speech buttons
+function initializeBuiltInControls() {
+    initializeCharacterCounters();
+    initializeSpeechButtons();
+}
+
+function initializeCharacterCounters() {
+    const counters = document.querySelectorAll('.character-counter');
+    
+    counters.forEach(counter => {
+        const maxLength = parseInt(counter.getAttribute('data-max'));
+        const fieldContainer = counter.closest('.mb-3, .mb-4');
+        const textarea = fieldContainer.querySelector('textarea');
+        
+        if (textarea && maxLength) {
+            function updateCounter() {
+                const remaining = maxLength - textarea.value.length;
+                counter.textContent = `${remaining} characters remaining`;
+                
+                // Add warning class when getting low
+                if (remaining < 50) {
+                    counter.classList.add('warning');
+                } else {
+                    counter.classList.remove('warning');
+                }
+            }
+            
+            textarea.addEventListener('input', updateCounter);
+            updateCounter(); // Initialize
+        }
+    });
+}
+
+function initializeSpeechButtons() {
+    // Initialize speech handler if not already done
+    if (typeof speechHandler === 'undefined') {
+        speechHandler = new ProgressiveSpeechHandler();
+    }
+    
+    const speechButtons = document.querySelectorAll('.speech-btn');
+    
+    speechButtons.forEach(button => {
+        const fieldContainer = button.closest('.mb-3, .mb-4');
+        const textarea = fieldContainer.querySelector('textarea');
+        
+        if (!textarea) return;
+        
+        // Update button appearance based on support
+        if (!speechHandler.hasSupport) {
+            button.classList.add('speech-unsupported');
+            button.innerHTML = '<i class="bi bi-keyboard"></i> <span class="btn-text d-none d-sm-inline ms-1">Type</span>';
+            button.title = 'Add text (voice not supported)';
+        }
+        
+        // Add click event listener - simplified
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            speechHandler.toggleListening(textarea, this);
+        });
+    });
+}
 
 function initializeAllSliders() {
     // Define all possible slider configurations
@@ -78,7 +143,7 @@ function initializeAllSliders() {
             min: 1,
             max: 10
         },
-        // Detail form sliders
+        // Detailed form sliders
         {
             sliderId: 'painLevelSlider',
             valueId: 'detailPainSliderValue',
@@ -232,36 +297,111 @@ function initializeDeleteModal() {
     });
 }
 
-function addCharacterCounters() {
-    const triggersField = document.querySelector('textarea[name="triggers"]');
-    const notesField = document.querySelector('textarea[name="notes"]');
-    
-    if (triggersField) {
-        addCounter(triggersField, 300);
-    }
-    
-    if (notesField) {
-        addCounter(notesField, 1000);
-    }
-}
-
-function addCounter(field, maxLength) {
-    const counter = document.createElement('div');
-    counter.className = 'character-counter text-muted small';
-    counter.style.textAlign = 'right';
-    
-    function updateCounter() {
-        const remaining = maxLength - field.value.length;
-        counter.textContent = `${remaining} characters remaining`;
+// Enhanced speech handler with better state management
+class ProgressiveSpeechHandler {
+    constructor() {
+        this.hasSupport = 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
+        this.isListening = false;
+        this.currentField = null;
+        this.activeButton = null;
+        this.activeFieldContainer = null;
         
-        if (remaining < 50) {
-            counter.style.color = '#dc3545'; // Red warning
-        } else {
-            counter.style.color = '#6c757d'; // Normal gray
+        if (this.hasSupport) {
+            this.initializeRecognition();
         }
     }
     
-    field.addEventListener('input', updateCounter);
-    field.parentNode.appendChild(counter);
-    updateCounter(); // Initialize
+    initializeRecognition() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        this.recognition = new SpeechRecognition();
+        this.recognition.continuous = true;
+        this.recognition.interimResults = false;
+        this.recognition.lang = 'en-US';
+        
+        this.recognition.onstart = () => {
+            this.isListening = true;
+            this.updateActiveButton();
+            this.updateVisualFeedback();
+        };
+        
+        this.recognition.onend = () => {
+            this.isListening = false;
+            this.updateActiveButton();
+            this.updateVisualFeedback();
+            this.resetActiveState();
+        };
+        
+        this.recognition.onerror = (event) => {
+            console.warn('Speech recognition error:', event.error);
+            this.isListening = false;
+            this.updateActiveButton();
+            this.updateVisualFeedback();
+            this.resetActiveState();
+        };
+        
+        this.recognition.onresult = (event) => {
+            let finalTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript + ' ';
+                }
+            }
+            
+            if (this.currentField && finalTranscript.trim()) {
+                const currentText = this.currentField.value;
+                this.currentField.value = currentText ? currentText + ' ' + finalTranscript.trim() : finalTranscript.trim();
+                this.currentField.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+        };
+    }
+    
+    toggleListening(field, button) {
+        // Only proceed if speech is supported
+        if (!this.hasSupport) {
+            return;
+        }
+        
+        // If already listening to a different field, stop first
+        if (this.isListening && this.activeButton !== button) {
+            this.recognition.stop();
+            return;
+        }
+        
+        if (this.isListening) {
+            this.recognition.stop();
+        } else {
+            this.currentField = field;
+            this.activeButton = button;
+            this.activeFieldContainer = button.closest('.mb-3, .mb-4');
+            this.recognition.start();
+        }
+    }
+    
+    updateActiveButton() {
+        if (!this.activeButton) return;
+        
+        const icon = this.activeButton.querySelector('i');
+        const text = this.activeButton.querySelector('.btn-text');
+        
+        if (this.isListening) {
+            this.activeButton.classList.add('listening');
+            this.activeButton.title = 'Stop recording';
+            icon.className = 'fa-solid fa-microphone-slash';
+            if (text) text.textContent = 'Stop Recording';
+        } else {
+            this.activeButton.classList.remove('listening');
+            this.activeButton.title = 'Start voice input';
+            icon.className = 'fa-solid fa-microphone';
+            if (text) text.textContent = 'Start Recording';
+        }
+    }
+    
+    resetActiveState() {
+        this.activeButton = null;
+        this.activeFieldContainer = null;
+        this.currentField = null;
+    }
 }
+
+// Initialize speech handler
+let speechHandler;

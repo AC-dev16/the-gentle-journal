@@ -24,14 +24,22 @@ class DiaryEntryForm(forms.ModelForm):
             }),
             'triggers': forms.Textarea(attrs={
                 'rows': 5,
-                'maxlength': 300,  # HTML5 maxlength attribute
-                'placeholder': 'What triggered your pain today?'
+                'maxlength': 300,
+                'class': 'form-control',
+                'placeholder': 'What triggered your pain today? (max: 300 characters)'
             }),
             'notes': forms.Textarea(attrs={
                 'rows': 5,
-                'maxlength': 1000,  # HTML5 maxlength attribute
-                'placeholder': 'Additional notes about your condition...'
+                'maxlength': 1000,
+                'class': 'form-control',
+                'placeholder': 'Additional notes about your condition... (max: 1000 characters)'
             })
+        }
+        
+        # Remove help_texts to eliminate hint elements
+        help_texts = {
+            'triggers': '',
+            'notes': '',
         }
 
 class QuickEntryForm(forms.ModelForm):

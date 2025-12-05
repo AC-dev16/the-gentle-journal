@@ -61,19 +61,48 @@
                         <div class="mb-3">
                             {{ form.sleep_hours|as_crispy_field }}
                         </div>
+                        
+                        <!-- Triggers Field with Custom Layout -->
                         <div class="mb-3">
-                            {{ form.triggers|as_crispy_field }}
+                            <label for="id_triggers" class="form-label">Triggers</label>
+                            <textarea name="triggers" 
+                                      id="id_triggers"
+                                      class="form-control"
+                                      rows="5"
+                                      maxlength="300"
+                                      placeholder="What triggered your pain today?">{{ form.triggers.value|default_if_none:"" }}</textarea>
+                            <div class="field-footer d-flex justify-content-between align-items-center mt-2">
+                                <small class="character-counter text-muted" data-max="300">300 characters remaining</small>
+                                <button type="button" class="btn btn-outline-secondary btn-sm speech-btn" title="Start voice input">
+                                    <i class="fa-solid fa-microphone"></i>
+                                    <span class="btn-text d-none d-sm-inline ms-1">Start Recording</span>
+                                </button>
+                            </div>
                         </div>
+                        
+                        <!-- Notes Field with Custom Layout -->
                         <div class="mb-4">
-                            {{ form.notes|as_crispy_field }}
+                            <label for="id_notes" class="form-label">Notes</label>
+                            <textarea name="notes" 
+                                      id="id_notes"
+                                      class="form-control"
+                                      rows="5"
+                                      maxlength="1000"
+                                      placeholder="Additional notes about your condition...">{{ form.notes.value|default_if_none:"" }}</textarea>
+                            <div class="field-footer d-flex justify-content-between align-items-center mt-2">
+                                <small class="character-counter text-muted" data-max="1000">1000 characters remaining</small>
+                                <button type="button" class="btn btn-outline-secondary btn-sm speech-btn" title="Start voice input">
+                                    <i class="fa-solid fa-microphone"></i>
+                                    <span class="btn-text d-none d-sm-inline ms-1">Start Recording</span>
+                                </button>
+                            </div>
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{% url 'entries' %}" class="btn btn-accent-outline">
-                                <i class="bi bi-arrow-left"></i> Back to Entries
+                                Go to Entries
                             </a>
                             <button type="submit" class="btn btn-accent">
-                                <i class="bi bi-save"></i> 
                                 {% if entry %}Update Entry{% else %}Save Entry{% endif %}
                             </button>
                         </div>
@@ -87,5 +116,4 @@
 
 {% block extra_js %}
 <script src="{% static 'js/script.js' %}"></script>
-<script src="https://kit.fontawesome.com/87e7ffe589.js" crossorigin="anonymous"></script>
 {% endblock %}

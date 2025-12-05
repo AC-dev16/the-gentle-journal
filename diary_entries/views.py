@@ -2,7 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views import generic
-from datetime import datetime
+from django.http import JsonResponse
+from datetime import datetime, timedelta
+from django.db.models import Avg, Count
+from django.utils import timezone
 from .forms import DiaryEntryForm, QuickEntryForm, ContactEmailForm
 from .models import DiaryEntry, ContactEmail
 
@@ -138,3 +141,67 @@ def delete_entry(request, entry_id):
     entry.delete()
     messages.success(request, 'Diary entry deleted successfully!')
     return redirect('entries')
+
+@login_required
+def analytics_view(request):
+    """Analytics dashboard with interactive charts"""
+    user_entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
+    
+    # Basic statistics
+    total_entries = user_entries.count()
+    avg_pain = user_entries.aggregate(avg_pain=Avg('pain_level'))['avg_pain'] or 0
+    avg_mood = user_entries.aggregate(avg_mood=Avg('mood_level'))['avg_mood'] or 0
+    avg_sleep = user_entries.aggregate(avg_sleep=Avg('sleep_hours'))['avg_sleep'] or 0
+    
+    context = {
+        'total_entries': total_entries,
+        'avg_pain': round(avg_pain, 1),
+        'avg_mood': round(avg_mood, 1),
+        'avg_sleep': round(avg_sleep, 1),
+    }
+    
+    return render(request, 'diary_entries/analytics.html', context)
+
+@login_required
+def analytics_data_api(request):
+    """API endpoint for chart data with date filtering"""
+    days = request.GET.get('days', '30')  # Default to 30 days
+    
+    try:
+        days_int = int(days)
+    except ValueError:
+        days_int = 30
+    
+    # Calculate date range
+    end_date = timezone.now()
+    start_date = end_date - timedelta(days=days_int)
+    
+    # Get user entries within date range
+    user_entries = DiaryEntry.objects.filter(
+        user=request.user,
+        created_at__gte=start_date,
+        created_at__lte=end_date
+    ).order_by('created_at')
+    
+    # Prepare chart data
+    chart_data = {
+        'labels': [],
+        'pain_data': [],
+        'mood_data': [],
+        'sleep_data': [],
+        'entry_count': user_entries.count(),
+        'date_range': {
+            'start': start_date.strftime('%Y-%m-%d'),
+            'end': end_date.strftime('%Y-%m-%d'),
+            'days': days_int
+        }
+    }
+    
+    # Format data for charts
+    for entry in user_entries:
+        chart_data['labels'].append(entry.created_at.strftime('%m/%d'))
+        chart_data['pain_data'].append(entry.pain_level)
+        chart_data['mood_data'].append(entry.mood_level)
+        chart_data['sleep_data'].append(entry.sleep_hours)
+    
+    return JsonResponse(chart_data)

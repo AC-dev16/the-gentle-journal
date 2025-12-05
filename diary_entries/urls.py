@@ -10,4 +10,8 @@ urlpatterns = [
     path('entries/delete/<int:entry_id>/', views.delete_entry, name='delete_entry'),
     path('entries/list/', views.DiaryEntryListView.as_view(), name='diary_entry_list'),
     path('contact/', views.contact, name='contact_email'),
+    
+    # Analytics URLs
+    path('analytics/', views.analytics_view, name='analytics'),
+    path('api/analytics-data/', views.analytics_data_api, name='analytics_data_api'),
 ]

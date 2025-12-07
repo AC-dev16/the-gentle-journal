@@ -1,8 +1,11 @@
 # The Gentle Journal
 
+![The Gentle Journal](image.png) 
+
+
 A compassionate web application for tracking pain, mood, and wellness journey. Built with Django and Bootstrap 5, The Gentle Journal provides users with an intuitive platform to monitor their health patterns and share meaningful data with healthcare providers.
 
-![The Gentle Journal Homepage](static/images/readme-hero.png)
+[The Gentle Journal Homepage](https://the-gentle-journal1-90f010b8c48c.herokuapp.com/)
 
 ## Table of Contents
 
@@ -18,7 +21,7 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 - [Credits](#credits)
 - [License](#license)
 
-## Features
+## Features 
 
 ### Current Features
 
@@ -53,31 +56,53 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 
 ### Planned Features
 
-- [ ] Data export functionality (PDF, CSV)
-- [ ] Statistical analysis and trends
-- [ ] Calendar view of entries
-- [ ] Medication tracking
-- [ ] Healthcare provider sharing
-- [ ] Mobile app integration
+- Data export functionality (PDF, CSV)
+- Detailed Statistical analysis and trends
+- Calendar view of entries
+- Medication tracking
+- Healthcare provider sharing
+- Member Forum/ Community
+- Mobile app integration
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## User Experience (UX)
 
 ### User Stories
 
-#### First Time Visitor Goals
-- As a first-time visitor, I want to understand what The Gentle Journal is about
-- As a first-time visitor, I want to easily navigate the website
-- As a first-time visitor, I want to create an account quickly
+- As a user, I want to be welcomed by a simple homepage before signup/login so that I understand the app’s purpose and can easily start using it.
+- As a user I can find login/logout so that i can access my dairy easily
+- As a user I want to create an account so that i can securely access my diary
+- As a user I want to record my pain level, location, mood, triggers so that i can track patterns
+- As a user I can be welcomed by a simple dashboard so that i can see comparisons in mood/ pain and enter a pain log quickly when i dont have much time
+- As a user I can see my past entries in an organised layout so that i can review them when needed
+- As a user I want to update or remove entries so that my data stays accurate
+- As a user I want to view my mood, pain levels and sleep so that i can understand the impact of these emotional patterns on my pain levels
+- As a user, I want to access a contact form so that I can reach out for support, feedback, or questions about the app.
+- As a user, I want to record my voice notes so that I can quickly log my pain, mood, or thoughts without typing.
 
-#### Returning Visitor Goals
-- As a returning visitor, I want to log in easily
-- As a returning visitor, I want to quickly add a new entry
-- As a returning visitor, I want to view my previous entries
+### Wireframes
 
-#### Frequent User Goals
-- As a frequent user, I want to see patterns in my pain and mood
-- As a frequent user, I want to edit or delete entries
-- As a frequent user, I want the interface to be fast and responsive
+<details>
+<summary>
+Desktop
+</summary>
+
+![Desktop Wireframes - Homepage, Dashboard, Entries, Analytics](/images/desktop-wireframe1.png) 
+
+![Desktop Wireframes - New Entry, Contact Us Form](/images/desktop-wireframe2.png) 
+</details>
+
+<details>
+<summary>
+Mobile
+</summary>
+
+![Mobile Wireframes - Homepage, Dashboard, Entries, Analytics](/images/mobile-wireframe1.png)
+
+![Mobile Wireframes - New Entry, Contact Us Form](/images/mobile-wireframe2.png) 
+
+</details>
 
 ### Design Decisions
 
@@ -95,6 +120,8 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 - Font Awesome icons for consistent visual language
 - Pagelines icon (🍃) as brand symbol representing growth and healing
 - Favicon created by downloading matching Font Awesome Pagelines icon from ICONIFY as a png then importing it to favicon.io
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## Technologies Used
 
@@ -121,14 +148,18 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 - **Heroku**: Cloud deployment
 - **Visual Studio Code**: IDE
 
-### Dependencies
+## Dependencies
+
 ```
 Django==4.2.26 dj-database-url==2.1.0 gunicorn==22.0.0 whitenoise==6.7.0 django-allauth==0.63.3 django-crispy-forms==2.1 crispy-bootstrap5==2024.2 django-summernote==0.8.20.0
 ```
 
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
 ## Installation & Setup
 
 ### Prerequisites
+
 - Python 3.8+
 - Git
 - PostgreSQL (for production)
@@ -183,8 +214,12 @@ python manage.py runserver
 ```
 Visit http://127.0.0.1:8000 to view the application.
 
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
 ## Usage
+
 ### Creating Your First Entry
+
 - Register/Login to your account
 - Navigate to Dashboard - you'll see a personalized greeting
 - Use Quick Entry for rapid logging or click "Detailed Entry" for comprehensive tracking
@@ -196,17 +231,23 @@ Visit http://127.0.0.1:8000 to view the application.
  - Triggers (optional, max 300 characters)
  - Notes (optional, max 1000 characters)
  - Save your entry
+
 ### Viewing and Managing Entries
+
 - Go to "My Entries" from the navigation
 - Click any entry card to view full details in a modal
 - Use Edit button to modify an entry
 - Use Delete button for removal (with confirmation dialog)
+
 ### Admin Features
+
 - Access the admin panel at /admin/ with superuser credentials to:
- - Manage user accounts
- - View and manage diary entries
- - Handle contact form submissions
- - Configure site settings
+- Manage user accounts
+- View and manage diary entries
+- Handle contact form submissions
+- Configure site settings
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## Database Design
 

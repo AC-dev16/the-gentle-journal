@@ -3,7 +3,6 @@
 :root {
     --primary-color: #D9EAD3;
     --secondary-color: #3A7D7D;
-    --highlight-color: #6BBBAE;
     --text-color-primary: #2F4F4F;
     --text-color-secondary: #6B7D7D;
     --accent-color: #EDEAF6;
@@ -238,7 +237,7 @@ hr {
 }
 
 .form-range::-webkit-slider-thumb:hover {
-    background-color: var(--highlight-color);
+    background-color: var(--secondary-color);
     transform: scale(1.1);
 }
 

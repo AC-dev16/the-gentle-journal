@@ -88,9 +88,9 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 Desktop
 </summary>
 
-![Desktop Wireframes - Homepage, Dashboard, Entries, Analytics](/images/desktop-wireframe1.png) 
+![Desktop Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/desktop-wireframe1.png) 
 
-![Desktop Wireframes - New Entry, Contact Us Form](/images/desktop-wireframe2.png) 
+![Desktop Wireframes - New Entry, Contact Us Form](static/images/desktop-wireframe2.png) 
 </details>
 
 <details>
@@ -98,9 +98,9 @@ Desktop
 Mobile
 </summary>
 
-![Mobile Wireframes - Homepage, Dashboard, Entries, Analytics](/images/mobile-wireframe1.png)
+![Mobile Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/mobile-wireframe1.png)
 
-![Mobile Wireframes - New Entry, Contact Us Form](/images/mobile-wireframe2.png) 
+![Mobile Wireframes - New Entry, Contact Us Form](static/images/mobile-wireframe2.png) 
 
 </details>
 
@@ -109,8 +109,16 @@ Mobile
 #### Color Scheme
 - **Primary Color**: #D9EAD3 (Soft green for calm, healing theme)
 - **Secondary Color**: #3A7D7D (Teal for trust and stability)
-- **Accent Color**: #6BBBAE (Light teal for highlights)
-- **Text Colors**: #2F4F4F (Dark slate gray for readability)
+- **Accent Color**: #EDEAF6 (Light lavender for highlights/ buttons)
+- **Primary Text Color**: #2F4F4F (Dark slate gray for readability)
+- **Secondary Text Color**: #6B7D7D (Muted teal‑gray conveys calmness and stability)
+
+![Color Palette](static/images/color-palette.png)
+
+#### Color Contrast
+- 
+
+![Color Contrast](static/images/color-contrast.png)
 
 #### Typography
 - **Primary Font**: 'Lato' - Clean, readable sans-serif
@@ -224,17 +232,17 @@ Visit http://127.0.0.1:8000 to view the application.
 - Navigate to Dashboard - you'll see a personalized greeting
 - Use Quick Entry for rapid logging or click "Detailed Entry" for comprehensive tracking
 - Fill in the form:
- - Location (where you are)
- - Pain Level (0-10 slider)
- - Mood Level (1-10 slider)
- - Sleep Hours (with decimal support)
- - Triggers (optional, max 300 characters)
- - Notes (optional, max 1000 characters)
- - Save your entry
+  - Location (where you are)
+  - Pain Level (0-10 slider)
+  - Mood Level (1-10 slider)
+  - Sleep Hours (with decimal support)
+  - Triggers (optional, max 300 characters)
+  - Notes (optional, max 1000 characters)
+- Save your entry
 
 ### Viewing and Managing Entries
 
-- Go to "My Entries" from the navigation
+- Go to "My Entries" from the navigation or "View All Entries" found on Recent Entries table on the Dashboard
 - Click any entry card to view full details in a modal
 - Use Edit button to modify an entry
 - Use Delete button for removal (with confirmation dialog)
@@ -242,10 +250,10 @@ Visit http://127.0.0.1:8000 to view the application.
 ### Admin Features
 
 - Access the admin panel at /admin/ with superuser credentials to:
-- Manage user accounts
-- View and manage diary entries
-- Handle contact form submissions
-- Configure site settings
+  - Manage user accounts
+  - View and manage diary entries
+  - Handle contact form submissions
+  - Configure site settings
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
@@ -275,6 +283,8 @@ User (Django built-in)
 - read: BooleanField (default False)
 - created_at: DateTimeField (auto)
 - updated_at: DateTimeField (auto)
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## Testing
 
@@ -313,6 +323,8 @@ User (Django built-in)
 - Tablet (768x1024, 820x1180)
 - Mobile (375x667, 414x896, 390x844)
 
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
 ## Deployment
 
 ### Heroku Deployment
@@ -331,6 +343,8 @@ SECRET_KEY: Django secret key
 DATABASE_URL: PostgreSQL connection string
 DEBUG: Set to False for production
 ```
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## Credits
 
@@ -358,6 +372,8 @@ DEBUG: Set to False for production
 - Code Institute for project guidance
 - Django community for excellent documentation
 
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
 ## Contact
 
 #### For questions, suggestions, or support:
@@ -365,3 +381,5 @@ DEBUG: Set to False for production
 - **Email:** your-email@example.com
 - **GitHub:** YourGitHubUsername
 - **Project Repository:** The Gentle Journal
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>

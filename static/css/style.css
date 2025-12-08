@@ -34,14 +34,14 @@ body {
     z-index: 1000;
 }
 
-/* .navbar-brand {
+#navbarBrand {
     font-size: 1.5rem !important;
-} */
+}
 
-/* .nav-link {
+.nav-link {
     font-size: 1.2rem !important;
     font-weight: bold;
-} */
+}
 
 main {
     margin-top: 70px;
@@ -128,7 +128,7 @@ hr {
     font-size: 1.8rem;
 }
 
-#date {
+.date {
     font-size: 1.5rem;
 }
 
@@ -422,6 +422,10 @@ textarea:focus + .field-footer {
     transform: translateY(-3px);
 }
 
+.timeline, .insights {
+    font-size: 1.3rem;
+}
+
 .card-header {
     background-color: var(--primary-color);
 }
@@ -464,15 +468,15 @@ textarea:focus + .field-footer {
 
 /* Mobile responsiveness */
 
-/* @media screen and (max-width: 375px) {
-    div.container.sm-center {
-        justify-content: center !important;
+@media screen and (max-width: 375px) {
+    #centered {
+        justify-content: center;
     }
 
     main {
         margin-top: 100px;
     }
-} */
+}
 
 @media screen and (max-width: 768px) {
     .chart-container {

@@ -66,7 +66,7 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
-## User Experience (UX)
+## User Experience Design (UX)
 
 ### User Stories
 
@@ -80,6 +80,10 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 - As a user I want to view my mood, pain levels and sleep so that i can understand the impact of these emotional patterns on my pain levels
 - As a user, I want to access a contact form so that I can reach out for support, feedback, or questions about the app.
 - As a user, I want to record my voice notes so that I can quickly log my pain, mood, or thoughts without typing.
+
+### Agile
+
+**Project Board** - link to project board
 
 ### Wireframes
 
@@ -315,6 +319,10 @@ User (Django built-in)
 - Login/logout functionality
 - Password reset (if enabled)
 
+### Automated Testing
+
+#### Django TestCase
+
 ### Responsive Design
 
 #### Tested on:
@@ -324,6 +332,18 @@ User (Django built-in)
 - Mobile (375x667, 414x896, 390x844)
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
+### Lighthouse 
+
+### Validation Testing
+
+#### HTML validator
+
+#### CSS Validator
+
+#### PEP8 Stardards
+
+
 
 ## Deployment
 
@@ -373,6 +393,14 @@ DEBUG: Set to False for production
 - Django community for excellent documentation
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
+## AI Implementation
+
+### Code Creation
+
+### Debugging
+
+## Learning Points
 
 ## Contact
 

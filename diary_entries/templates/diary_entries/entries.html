@@ -38,7 +38,7 @@
             <!-- Entry content -->
             <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
-                    <h3 id="date" class="fw-bold">{{ entry.created_at|date:"M d, Y" }}</h3>
+                    <h3 class="fw-bold date">{{ entry.created_at|date:"M d, Y" }}</h3>
                     <p class="mb-0">Location: {{ entry.location }} - Pain: {{ entry.pain_level }}/10</p>
                     
                     {% if entry.mood_level %}
@@ -50,12 +50,11 @@
                 </div>
                 
                 <div class="entry-actions" onclick="event.stopPropagation();">
-                    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-edit" id="edit-btn">
+                    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-edit">
                         <i class="fa-solid fa-pen fa-sm"></i>
                     </a>
                     <a href="{% url 'delete_entry' entry.id %}" 
                        class="btn btn-delete delete-entry-btn"
-                       id="delete-btn"
                        data-entry-id="{{ entry.id }}"
                        data-entry-location="{{ entry.location }}"
                        data-entry-date="{{ entry.created_at|date:'M d, Y' }}">
@@ -85,7 +84,7 @@
 </div>
 
 <!-- Read Modal -->
-<div class="modal fade" id="readEntryModal" tabindex="-1" aria-labelledby="readEntryModalLabel" aria-hidden="true">
+<div class="modal fade" id="readEntryModal" role="dialog" tabindex="-1" aria-labelledby="readEntryModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -147,7 +146,7 @@
 </div>
 
 <!-- DELETE CONFIRMATION MODAL -->
-<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteConfirmModal" role="dialog" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

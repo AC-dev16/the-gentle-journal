@@ -247,13 +247,13 @@ class AnalyticsManager {
         // Pain insights
         if (avgPain <= 3) {
             insights.push({
-                icon: 'bi-check-circle-fill text-success',
+                icon: 'fa-solid fa-circle-check text-success',
                 title: 'Great Pain Management!',
                 message: `Your average pain level (${avgPain.toFixed(1)}/10) is in the low range. Keep up your current management strategies.`
             });
         } else if (avgPain >= 7) {
             insights.push({
-                icon: 'bi-exclamation-triangle-fill text-warning',
+                icon: 'fa-solid fa-triangle-exclamation text-warning',
                 title: 'High Pain Levels',
                 message: `Your average pain level (${avgPain.toFixed(1)}/10) is high. Consider discussing pain management options with your healthcare provider.`
             });
@@ -262,13 +262,13 @@ class AnalyticsManager {
         // Mood insights
         if (avgMood >= 7) {
             insights.push({
-                icon: 'bi-emoji-smile-fill text-success',
+                icon: 'fa-regular fa-face-smile text-success',
                 title: 'Positive Mood Trend',
                 message: `Your average mood (${avgMood.toFixed(1)}/10) shows consistent positivity. This supports overall wellbeing.`
             });
         } else if (avgMood <= 4) {
             insights.push({
-                icon: 'bi-heart-fill text-primary',
+                icon: 'fa-solid fa-heart text-primary',
                 title: 'Mood Support',
                 message: `Your average mood (${avgMood.toFixed(1)}/10) suggests you might benefit from additional support or stress management techniques.`
             });
@@ -277,13 +277,13 @@ class AnalyticsManager {
         // Sleep insights
         if (avgSleep < 6) {
             insights.push({
-                icon: 'bi-moon-fill text-info',
+                icon: 'fa-solid fa-moon text-info',
                 title: 'Sleep Improvement Needed',
                 message: `You're averaging ${avgSleep.toFixed(1)} hours of sleep. Aim for 7-9 hours for optimal health and pain management.`
             });
         } else if (avgSleep >= 7 && avgSleep <= 9) {
             insights.push({
-                icon: 'bi-check-circle-fill text-success',
+                icon: 'fa-solid fa-check-circle text-success',
                 title: 'Excellent Sleep Habits!',
                 message: `Your average sleep (${avgSleep.toFixed(1)} hours) is in the healthy range, supporting overall wellbeing.`
             });
@@ -295,13 +295,13 @@ class AnalyticsManager {
 
         if (painTrend < -0.1) {
             insights.push({
-                icon: 'bi-arrow-down-circle-fill text-success',
+                icon: 'fa-solid fa-circle-arrow-down text-success',
                 title: 'Pain Trending Down',
                 message: 'Your pain levels show a decreasing trend over this period. Great progress!'
             });
         } else if (painTrend > 0.1) {
             insights.push({
-                icon: 'bi-arrow-up-circle-fill text-warning',
+                icon: 'fa-solid fa-circle-arrow-up text-warning',
                 title: 'Pain Trending Up',
                 message: 'Your pain levels show an increasing trend. Consider reviewing your management strategies.'
             });
@@ -309,7 +309,7 @@ class AnalyticsManager {
 
         if (moodTrend > 0.1) {
             insights.push({
-                icon: 'bi-arrow-up-circle-fill text-success',
+                icon: 'fa-solid fa-circle-arrow-up text-success',
                 title: 'Mood Improving',
                 message: 'Your mood shows an upward trend over this period. Keep up the positive momentum!'
             });
@@ -340,7 +340,7 @@ class AnalyticsManager {
             <div class="insight-item mb-3 p-3 border rounded">
                 <div class="d-flex align-items-center mb-2">
                     <i class="${insight.icon} me-2" style="font-size: 1.2rem;"></i>
-                    <h6 class="mb-0">${insight.title}</h6>
+                    <h4 class="mb-0">${insight.title}</h4>
                 </div>
                 <p class="mb-0 text-muted small">${insight.message}</p>
             </div>
@@ -351,7 +351,7 @@ class AnalyticsManager {
         const container = document.getElementById('insightsContainer');
         container.innerHTML = `
             <div class="alert alert-danger" role="alert">
-                <i class="bi bi-exclamation-triangle me-2"></i>
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>
                 ${message}
             </div>
         `;

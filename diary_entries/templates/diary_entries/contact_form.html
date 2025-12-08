@@ -11,7 +11,7 @@
             <div class="card contact-card mt-4">
                 <div class="card-header bg-transparent border-0 pt-4">
                     <h4 class="mb-0">
-                        <i class="bi bi-envelope"></i> Contact Us
+                        <i class="fa-regular fa-envelope"></i> Contact Us
                     </h4>
                     <small class="text-muted">
                         We'd love to hear from you. Send us a message and we'll respond as soon as possible.
@@ -25,10 +25,10 @@
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{% if user.is_authenticated %}{% url 'dashboard' %}{% else %}{% url 'homepage' %}{% endif %}" 
                                class="btn btn-accent-outline">
-                                <i class="bi bi-arrow-left"></i> Back
+                                <i class="fa-solid fa-arrow-left-long"></i> Back
                             </a>
                             <button type="submit" class="btn btn-accent">
-                                <i class="bi bi-send"></i> Send Message
+                                <i class="fa-regular fa-paper-plane"></i> Send Message
                             </button>
                         </div>
                     </form>

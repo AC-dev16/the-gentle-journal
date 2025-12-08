@@ -22,9 +22,9 @@
         <div class="col-lg-8 mb-4">
             <div class="card quick-entry-card" id="quick-entry">
                 <div class="card-header bg-transparent border-0 pt-4">
-                    <h4 class="mb-0 fw-bold">
-                        Quick Entry
-                    </h4>
+                    <h2 class="mb-0 fw-bol">
+                        Quick Entry <i class="fa-solid fa-book"></i>
+                    </h2>
                     <small class="text-muted">Log your current state quickly and easily</small>
                 </div>
                 <div class="card-body">
@@ -79,9 +79,9 @@
         <div class="col-lg-4">
             <div class="card recent-entries-card">
                 <div class="card-header bg-transparent border-0 pt-4">
-                    <h5 class="mb-0 fw-bold">
-                        Recent Entries <i class="fa-solid fa-book"></i>
-                    </h5>
+                    <h3 class="mb-0 recent-header">
+                        Recent Entries <i class="fa-solid fa-clipboard-list"></i>
+                    </h3>
                 </div>
                 <div class="card-body">
                     {% if entries %}
@@ -92,7 +92,7 @@
                             <div class="text-muted">Mood: {{ entry.mood_level }}/10</div>
                         </div>
                         {% endfor %}
-                        <a href="{% url 'entries' %}" class="btn btn-accent-outline btn-sm">
+                        <a href="{% url 'entries' %}" class="btn btn-accent-outline">
                             View All Entries
                         </a>
                     {% else %}

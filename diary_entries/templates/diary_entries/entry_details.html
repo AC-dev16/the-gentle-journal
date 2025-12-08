@@ -13,7 +13,7 @@
             <div class="card entry-form-card mt-4">
                 <div class="card-header bg-transparent border-0 pt-4">
                     <h4 class="mb-0">
-                        <i class="bi bi-{% if entry %}pencil{% else %}plus-circle-fill{% endif %}"></i>
+                        <i class="fa-solid fa-pencil{% if entry %} fa-pencil-alt{% else %} fa-plus-circle-fill{% endif %}"></i>
                         {% if entry %}Edit Entry{% else %}New Detailed Entry{% endif %}
                     </h4>
                     <small class="text-muted">
@@ -99,7 +99,7 @@
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="{% url 'entries' %}" class="btn btn-accent-outline">
+                            <a href="{% url 'entries' %}" class="btn btn-accent-outline fw-bold">
                                 Go to Entries
                             </a>
                             <button type="submit" class="btn btn-accent">

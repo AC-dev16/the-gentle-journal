@@ -34,6 +34,15 @@ body {
     z-index: 1000;
 }
 
+/* .navbar-brand {
+    font-size: 1.5rem !important;
+} */
+
+/* .nav-link {
+    font-size: 1.2rem !important;
+    font-weight: bold;
+} */
+
 main {
     margin-top: 70px;
     margin-bottom: 80px;
@@ -57,6 +66,7 @@ div.container.top {
 
 .feature-icon {
     font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 hr {
@@ -73,11 +83,15 @@ hr {
 }
 
 .quick-entry-btn {
-    margin: 31px 0px;
+    margin: 31px 0px 20px 0px;
 }
 
 .recent-entry {
     border-top: solid 1px black;
+}
+
+.recent-header h3{
+    font-size: 0.8rem !important; 
 }
 
 .btn-accent, .btn-new:hover, .entry-card:hover, .page-link, .btn-accent-outline:hover {
@@ -110,6 +124,14 @@ hr {
     transition: all 0.2s ease-in-out;
 }
 
+#entry-header {
+    font-size: 1.8rem;
+}
+
+#date {
+    font-size: 1.5rem;
+}
+
 .entry-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
@@ -117,7 +139,7 @@ hr {
 }
 
 /* Enhanced action button styling on card hover - no !important */
-.entry-card:hover .entry-actions a.btn.btn-sm {
+.entry-card:hover .entry-actions a.btn.btn-edit, .entry-card:hover .entry-actions a.btn.btn-delete {
     color: white;
     border: 1px solid white;
     background-color: transparent;
@@ -127,22 +149,22 @@ hr {
 }
 
 /* Edit button - green tint on hover */
-.entry-card:hover .entry-actions a.btn.btn-sm[href*="edit"]:hover {
+.entry-card:hover .entry-actions a.btn.btn-edit[href*="edit"]:hover {
     background-color: rgba(40, 167, 69, 0.3);
     border-color: #28a745;
     color: white;
 }
 
 /* Delete button - red tint on hover */
-.entry-card:hover .entry-actions a.btn.btn-sm[href*="delete"]:hover {
+.entry-card:hover .entry-actions a.btn.btn-delete[href*="delete"]:hover {
     background-color: rgba(220, 53, 69, 0.3);
     border-color: #dc3545;
     color: white;
 }
 
 /* Icons with higher specificity */
-.entry-card:hover .entry-actions a.btn.btn-sm i.fa-solid,
-.entry-card:hover .entry-actions a.btn.btn-sm i.fa-regular {
+.entry-card:hover .entry-actions a.btn.btn-edit i.fa-solid,
+.entry-card:hover .entry-actions a.btn.btn-delete i.fa-regular {
     color: white;
 }
 
@@ -441,6 +463,17 @@ textarea:focus + .field-footer {
 /* Media Queries */
 
 /* Mobile responsiveness */
+
+/* @media screen and (max-width: 375px) {
+    div.container.sm-center {
+        justify-content: center !important;
+    }
+
+    main {
+        margin-top: 100px;
+    }
+} */
+
 @media screen and (max-width: 768px) {
     .chart-container {
         height: 300px !important;

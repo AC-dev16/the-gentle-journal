@@ -11,7 +11,7 @@
     </div>
     
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4>All Entries ({{ entries|length }})</h4>
+        <h2 id="entry-header">All Entries ({{ entries|length }})</h2>
         <div>
             <a href="{% url 'entry_create' %}" class="btn btn-new">
                 New Entry <i class="fa-solid fa-plus fa-sm"></i>
@@ -38,7 +38,7 @@
             <!-- Entry content -->
             <div class="d-flex justify-content-between align-items-start">
                 <div class="flex-grow-1">
-                    <h5 class="fw-bold">{{ entry.created_at|date:"M d, Y" }}</h5>
+                    <h3 id="date" class="fw-bold">{{ entry.created_at|date:"M d, Y" }}</h3>
                     <p class="mb-0">Location: {{ entry.location }} - Pain: {{ entry.pain_level }}/10</p>
                     
                     {% if entry.mood_level %}
@@ -50,11 +50,12 @@
                 </div>
                 
                 <div class="entry-actions" onclick="event.stopPropagation();">
-                    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-sm">
+                    <a href="{% url 'edit_entry' entry.id %}" class="btn btn-edit" id="edit-btn">
                         <i class="fa-solid fa-pen fa-sm"></i>
                     </a>
                     <a href="{% url 'delete_entry' entry.id %}" 
-                       class="btn btn-sm delete-entry-btn"
+                       class="btn btn-delete delete-entry-btn"
+                       id="delete-btn"
                        data-entry-id="{{ entry.id }}"
                        data-entry-location="{{ entry.location }}"
                        data-entry-date="{{ entry.created_at|date:'M d, Y' }}">

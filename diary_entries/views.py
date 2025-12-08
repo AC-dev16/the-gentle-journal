@@ -21,7 +21,7 @@ def contact(request):
 
     **Context**
     ''contact_form''
-        An instance of :form: 'diary_entries.ContactEmailForm'.
+        An instance of :form:'diary_entries.ContactEmailForm'.
 
     **Template**
         :template:'diary_entries/contact_form.html'.
@@ -35,7 +35,7 @@ def contact(request):
                 request, messages.SUCCESS,
                 'Your message has been received! I endeavour to respond within 2 working days.'
             )
-            return redirect('contact_email')  # Redirect after successful submission
+            return redirect('contact_email')
     else:
         contact_form = ContactEmailForm()
 
@@ -43,7 +43,7 @@ def contact(request):
 
 class DiaryEntryListView(LoginRequiredMixin, generic.ListView):
     model = DiaryEntry
-    template_name = 'diary_entries/entries.html'  # Change this to point to your actual template
+    template_name = 'diary_entries/entries.html'
     context_object_name = 'entries'
     paginate_by = 10
     
@@ -52,13 +52,29 @@ class DiaryEntryListView(LoginRequiredMixin, generic.ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Add any additional context data you need
         return context
 
 # User dashboard view with quick entry form
 @login_required
 def dashboard(request):
-    """User dashboard showing personalized data"""
+    """
+    User dashboard displaying personalized data
+
+    **Context**
+    ``form``
+        An instance of :form:`diary_entries.QuickEntryForm`.
+    ``entries``
+        All entries related to the user.
+    ``user`` 
+        An instance of :model:`diary_entries.DiaryEntry`.
+    ``greeting``
+        Creates a greeting based on the time of day.
+    ``greeting_message``
+        Creates a greeting message based on the time of day.
+
+    **Template**
+        :template:'diary_entries/dashboard.html'.
+    """
     if request.method == 'POST':
         form = QuickEntryForm(request.POST)
         if form.is_valid():
@@ -99,7 +115,16 @@ def dashboard(request):
 # Create a new diary entry
 @login_required
 def entry_create(request):
-    """Create a new diary entry"""
+    """
+    Create a new diary entry
+    
+    **Context**
+    ``form``
+        An instance of :form:`diary_entries.DiaryEntryForm`.
+    
+    **Template**
+        :template:`diary_entries/entry_details.html`.
+    """
     if request.method == 'POST':
         form = DiaryEntryForm(request.POST)
         if form.is_valid():
@@ -116,7 +141,19 @@ def entry_create(request):
 # Edit an existing diary entry
 @login_required
 def edit_entry(request, entry_id):
-    """Edit a diary entry belonging to the current user"""
+    """
+    Edit a diary entry belonging to the current user
+    
+    **Context**
+    ``form``
+        An instance of :form:`diary_entries.DairyEntryForm`.
+    ``entry``
+        An instance of :model:`dairy_entries.DiaryEntry`.
+
+    **Template**
+        :template:`diary_entries/entry_details.html`.
+    """
+
     entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)
 
     if request.method == 'POST':
@@ -135,14 +172,27 @@ def edit_entry(request, entry_id):
 # List all entries
 @login_required
 def entry_list(request):
-    """List all user entries"""
+    """
+    List all user entries in date order
+    
+    **Context**
+    ``entries``
+        An instance of :models:`diary_entries.DiaryEntry`.
+
+    **Template**
+        :template:`diary_entries/entries.html`.
+    """
+
     entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'diary_entries/entries.html', {'entries': entries})
 
 # Delete an entry
 @login_required
 def delete_entry(request, entry_id):
-    """Delete a diary entry"""
+    """
+    Deletes a diary entry
+    """
+
     entry = get_object_or_404(DiaryEntry, id=entry_id, user=request.user)
     entry.delete()
     messages.success(request, 'Diary entry deleted successfully!')
@@ -150,7 +200,22 @@ def delete_entry(request, entry_id):
 
 @login_required
 def analytics_view(request):
-    """Analytics dashboard with interactive charts"""
+    """
+    Analytics dashboard with interactive charts
+
+    **Context**
+    ``total_entries``
+        Total number of diary entries by the user.
+    ``avg_pain``
+        Average pain level from user's entries.
+    ``avg_mood``
+        Average mood level from user's entries.
+    ``avg_sleep``
+        Average sleep hours from user's entries.
+
+    **Template**
+        :template:`diary_entries/analytics.html`.
+    """
     user_entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
     
     # Basic statistics
@@ -170,7 +235,23 @@ def analytics_view(request):
 
 @login_required
 def analytics_data_api(request):
-    """API endpoint for chart data with date filtering"""
+    """
+    API endpoint for chart data with date filtering
+    
+    **Context**
+    ``days``
+        Number of days to filter entries.
+
+    **Response**
+        JSON response containing:
+        - labels: List of dates for the x-axis.
+        - pain_data: List of pain levels.
+        - mood_data: List of mood levels.
+        - sleep_data: List of sleep hours.
+        - entry_count: Total number of entries in the range.
+        - date_range: Dictionary with start, end dates and days count.
+
+    """
     days = request.GET.get('days', '30')  # Default to 30 days
     
     try:

@@ -1,16 +1,21 @@
 # The Gentle Journal
 
-![The Gentle Journal - Project Banner](image.png) 
+![The Gentle Journal - Project Banner](static/images/readme/project-banner.png) 
 
+## Overview
 
-A compassionate web application for tracking pain, mood, and wellness journey. Built with Django and Bootstrap 5, The Gentle Journal provides users with an intuitive platform to monitor their health patterns and share meaningful data with healthcare providers.
+The Gentle Journal is a compassionate web application for tracking pain, mood, and wellness journey. Built with Django and Bootstrap 5, The Gentle Journal provides users with an intuitive platform to monitor their health patterns and share meaningful data with healthcare providers. There is full CRUD functionality to allow users to create, read, update and delete diary entries. The Gentle Journal also has an analytics page that displays pain levels, mood levels, and sleep hours in an easy to read line graph to see patterns and trends that may have an impact on pain levels and mental health issues. There are options for quick entry or a detailed entry form to fit around a users schedule. 
 
 [The Gentle Journal Homepage](https://the-gentle-journal1-90f010b8c48c.herokuapp.com/)
 
 ## Table of Contents
 
 - [Features](#features)
-- [User Experience (UX)](#user-experience-ux)
+- [User Experience Design (UX)](#user-experience-design-ux)
+  - [User Stories](#user-stories)
+  - [Agile](#agile)
+  - [Wireframes](#wireframes)
+  - [Design Decisions](#design-decisions)
 - [Design](#design)
 - [Technologies Used](#technologies-used)
 - [Installation & Setup](#installation--setup)
@@ -19,7 +24,6 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Credits](#credits)
-- [License](#license)
 
 ## Features 
 
@@ -92,9 +96,9 @@ A compassionate web application for tracking pain, mood, and wellness journey. B
 Desktop
 </summary>
 
-![Desktop Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/desktop-wireframe1.png) 
+![Desktop Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/readme/desktop-wireframe1.png) 
 
-![Desktop Wireframes - New Entry, Contact Us Form](static/images/desktop-wireframe2.png) 
+![Desktop Wireframes - New Entry, Contact Us Form](static/images/readme/desktop-wireframe2.png) 
 </details>
 
 <details>
@@ -102,9 +106,9 @@ Desktop
 Mobile
 </summary>
 
-![Mobile Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/mobile-wireframe1.png)
+![Mobile Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/readme/mobile-wireframe1.png)
 
-![Mobile Wireframes - New Entry, Contact Us Form](static/images/mobile-wireframe2.png) 
+![Mobile Wireframes - New Entry, Contact Us Form](static/images/readme/mobile-wireframe2.png) 
 
 </details>
 
@@ -117,12 +121,12 @@ Mobile
 - **Primary Text Color**: #2F4F4F (Dark slate gray for readability)
 - **Secondary Text Color**: #6B7D7D (Muted teal‑gray conveys calmness and stability)
 
-![Color Palette](static/images/color-palette.png)
+![Color Palette](static/images/readme/color-palette.png)
 
 #### Color Contrast
 - 
 
-![Color Contrast](static/images/color-contrast.png)
+![Color Contrast](static/images/readme/color-contrast.png)
 
 #### Typography
 - **Primary Font**: 'Lato' - Clean, readable sans-serif
@@ -406,8 +410,7 @@ DEBUG: Set to False for production
 
 #### For questions, suggestions, or support:
 
-- **Email:** your-email@example.com
-- **GitHub:** YourGitHubUsername
-- **Project Repository:** The Gentle Journal
+- **GitHub Repository:** [The Gentle Journal](https://github.com/AC-dev16/the-gentle-journal)
+- **Project Board:** [View Project Board](https://github.com/users/AC-dev16/projects/9)
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>

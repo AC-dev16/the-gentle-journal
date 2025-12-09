@@ -270,11 +270,6 @@ Visit http://127.0.0.1:8000 to view the application.
 
 ## Database Design
 
-### Entity Relationship Diagram
-- I created the ERD with [DiagramGPT](https://www.eraser.io/diagramgpt).
-
-![ERD](static/images/readme/erd.png)
-
 ### Models
 
 #### DiaryEntry
@@ -294,6 +289,11 @@ Visit http://127.0.0.1:8000 to view the application.
 - read: BooleanField (default False)
 - created_at: DateTimeField (auto)
 - updated_at: DateTimeField (auto)
+
+### Entity Relationship Diagram
+- I created the ERD with [DiagramGPT](https://www.eraser.io/diagramgpt).
+
+![ERD](static/images/readme/erd.png)
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
@@ -326,10 +326,6 @@ Visit http://127.0.0.1:8000 to view the application.
 - Login/logout functionality
 - Password reset (if enabled)
 
-### Automated Testing
-
-#### Django TestCase
-
 ### Responsive Design
 
 #### Tested on:
@@ -338,19 +334,85 @@ Visit http://127.0.0.1:8000 to view the application.
 - Tablet (768x1024, 820x1180)
 - Mobile (375x667, 414x896, 390x844)
 
+### Automated Testing
+
+#### Django TestCase
+
+The application includes comprehensive automated testing using Django's TestCase framework to ensure reliability and functionality across all features. The test suite covers three main areas:
+- **Form Testing** ([`test_forms.py`](diary_entries/test_forms.py)) validates all form functionality including field validation, character limits, boundary conditions, and required field enforcement for DiaryEntryForm, QuickEntryForm, and ContactEmailForm.
+- **View Testing** ([`test_views.py`](diary_entries/test_views.py)) ensures proper authentication requirements, CRUD operations, user data isolation, template rendering, and API responses across all views including homepage, dashboard, entries management, analytics, and contact functionality.
+- **Security Testing** verifies that users can only access and modify their own data, with comprehensive tests ensuring proper 404 responses when users attempt to access other users' entries. 
+- The test suite employs Django's built-in database isolation, setUp methods for consistent test data, and covers edge cases such as form validation errors, user authentication flows, and data security boundaries. All tests can be executed with `python manage.py test diary_entries` and provide confidence in the application's stability and security for production deployment.
+
+### Lighthouse
+
+**Homepage**
+
+![Homepage Lighthouse Results](static/images/readme/lighthouse-homepage.png)
+
+
+<details>
+<summary>
+Dashboard
+</summary>
+
+![Dashboard Lighthouse Results](static/images/readme/lighthouse-dashboard.png)
+</details>
+
+<details>
+<summary>
+My Entries
+</summary>
+
+![My Entries Lighthouse Results](static/images/readme/lighthouse-entries.png)
+</details>
+
+<details>
+<summary>
+Detailed Entry Form
+</summary>
+
+![Detailed Entry Lighthouse Results](static/images/readme/lighthouse-entry-form.png)
+</details>
+
+<details>
+<summary>
+Analytics
+</summary>
+
+![Analytics Lighthouse Results](static/images/readme/lighthouse-analytics.png)
+</details>
+
+<details>
+<summary>
+Contact
+</summary>
+
+![Contact Lighthouse Results](static/images/readme/lighthouse-contact.png)
+</details>
+
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
-### Lighthouse 
 
 ### Validation Testing
 
-#### HTML validator
+**HTML validator**
 
-#### CSS Validator
+I used [HTML Validation]() to test all my templates. Errors Encountered:
+- Duplicated IDs: This was an error caused by having an 'id' (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the 'id' and using a class instead.
+- I had a div element with a aria-labelledby but without a role. This caused an error because, by default, a div is a generic, non-semantic element that is not part of the accessibility tree. 
 
-#### PEP8 Stardards
+![HTML validator - homepage](static/images/readme/html-validator-homepage.png)
 
+**CSS Validator**
 
+I used [CSS Validation]() with no errors found.
+
+![CSS Validtion](static/images/readme/css-validator.png)
+
+**PEP8 Stardards**
+
+I used [Code Institutes Python Linter](https://pep8ci.herokuapp.com/) to validate all Python files.
 
 ## Deployment
 

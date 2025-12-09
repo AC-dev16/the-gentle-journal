@@ -4,19 +4,18 @@
 
 ## Overview
 
-The Gentle Journal is a compassionate web application for tracking pain, mood, and wellness journey. Built with Django and Bootstrap 5, The Gentle Journal provides users with an intuitive platform to monitor their health patterns and share meaningful data with healthcare providers. There is full CRUD functionality to allow users to create, read, update and delete diary entries. The Gentle Journal also has an analytics page that displays pain levels, mood levels, and sleep hours in an easy to read line graph to see patterns and trends that may have an impact on pain levels and mental health issues. There are options for quick entry or a detailed entry form to fit around a users schedule. 
+The Gentle Journal is a compassionate web application for tracking pain, mood, and wellness journey. Built with Django and Bootstrap 5, The Gentle Journal provides users with an intuitive platform to monitor their health patterns and share meaningful data with healthcare providers. There is full CRUD functionality to allow users to create, read, update and delete diary entries. The Gentle Journal also has an analytics page that displays pain levels, mood levels, and sleep hours in an easy to read line graph to see patterns and trends that may have an impact on pain levels and mental health. There are options for quick entry or a detailed entry form to fit around a users schedule. 
 
 [The Gentle Journal Homepage](https://the-gentle-journal1-90f010b8c48c.herokuapp.com/)
 
 ## Table of Contents
 
-- [Features](#features)
 - [User Experience Design (UX)](#user-experience-design-ux)
   - [User Stories](#user-stories)
   - [Agile](#agile)
   - [Wireframes](#wireframes)
   - [Design Decisions](#design-decisions)
-- [Design](#design)
+- [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation & Setup](#installation--setup)
 - [Usage](#usage)
@@ -24,6 +23,79 @@ The Gentle Journal is a compassionate web application for tracking pain, mood, a
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Credits](#credits)
+
+## User Experience Design (UX)
+
+### User Stories
+
+- As a user, I want to be welcomed by a simple homepage before signup/login so that I understand the app’s purpose and can easily start using it.
+- As a user I can find login/logout so that i can access my dairy easily
+- As a user I want to create an account so that i can securely access my diary
+- As a user I want to record my pain level, location, mood, triggers so that i can track patterns
+- As a user I can be welcomed by a simple dashboard so that i can see comparisons in mood/ pain and enter a pain log quickly when i dont have much time
+- As a user I can see my past entries in an organised layout so that i can review them when needed
+- As a user I want to update or remove entries so that my data stays accurate
+- As a user I want to view my mood, pain levels and sleep so that i can understand the impact of these emotional patterns on my pain levels
+- As a user, I want to access a contact form so that I can reach out for support, feedback, or questions about the app.
+- As a user, I want to record my voice notes so that I can quickly log my pain, mood, or thoughts without typing.
+
+### Agile
+
+This project was developed using Agile methodology through GitHub's project management tools. A [GitHub Project Board](https://github.com/users/AC-dev16/projects/9) was utilized to organize and track development progress, breaking down features into manageable user stories and tasks. The project board employed a Kanban-style workflow with columns for "Backlog", "To Do," "In Progress," and "Done," allowing for iterative development and continuous improvement. User stories were prioritized based on core functionality requirements, with essential features like user authentication, diary entry CRUD operations, and the dashboard implemented first, followed by enhanced features like analytics visualization and contact functionality. This approach enabled efficient project management, clear visibility of development progress, and ensured that the most valuable features were delivered early in the development cycle.
+
+### Wireframes
+
+<details>
+<summary>
+Desktop
+</summary>
+
+![Desktop Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/readme/desktop-wireframe1.png) 
+
+![Desktop Wireframes - New Entry, Contact Us Form](static/images/readme/desktop-wireframe2.png) 
+</details>
+
+<details>
+<summary>
+Mobile
+</summary>
+
+![Mobile Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/readme/mobile-wireframe1.png)
+
+![Mobile Wireframes - New Entry, Contact Us Form](static/images/readme/mobile-wireframe2.png) 
+
+</details>
+
+### Design Decisions
+
+#### Color Scheme
+
+The color palette for The Gentle Journal was carefully selected to create a calming, therapeutic environment that supports users during potentially difficult moments of pain tracking and self-reflection.
+
+- **Primary Color**: #D9EAD3 (Soft green for calm, healing theme)
+- **Secondary Color**: #3A7D7D (Teal for trust and stability)
+- **Accent Color**: #EDEAF6 (Light lavender for highlights/ buttons)
+- **Primary Text Color**: #2F4F4F (Dark slate gray for readability)
+- **Secondary Text Color**: #6B7D7D (Muted teal‑gray conveys calmness and stability)
+
+![Color Palette](static/images/readme/color-palette.png)
+
+#### Color Contrast
+
+All color combinations have been tested using the [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to ensure compliance with WCAG 2.1 AA accessibility standards. The primary text color (#2F4F4F) against the light backgrounds achieves a contrast ratio of 4.5:1 or higher, guaranteeing readability for users with visual impairments while maintaining the therapeutic aesthetic essential for a healthcare-focused application.
+
+![Color Contrast](static/images/readme/color-contrast.png)
+
+#### Typography
+- **Primary Font**: 'Lato' - Clean, readable sans-serif
+- **Secondary Font**: 'Forum' - Elegant serif for headings
+
+#### Icons
+- Font Awesome icons for consistent visual language
+- Pagelines icon (🍃) as brand symbol representing growth and healing
+- Favicon created by downloading matching Font Awesome Pagelines icon from ICONIFY as a png then importing it to favicon.io
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## Features 
 
@@ -67,75 +139,6 @@ The Gentle Journal is a compassionate web application for tracking pain, mood, a
 - Healthcare provider sharing
 - Member Forum/ Community
 - Mobile app integration
-
-<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
-
-## User Experience Design (UX)
-
-### User Stories
-
-- As a user, I want to be welcomed by a simple homepage before signup/login so that I understand the app’s purpose and can easily start using it.
-- As a user I can find login/logout so that i can access my dairy easily
-- As a user I want to create an account so that i can securely access my diary
-- As a user I want to record my pain level, location, mood, triggers so that i can track patterns
-- As a user I can be welcomed by a simple dashboard so that i can see comparisons in mood/ pain and enter a pain log quickly when i dont have much time
-- As a user I can see my past entries in an organised layout so that i can review them when needed
-- As a user I want to update or remove entries so that my data stays accurate
-- As a user I want to view my mood, pain levels and sleep so that i can understand the impact of these emotional patterns on my pain levels
-- As a user, I want to access a contact form so that I can reach out for support, feedback, or questions about the app.
-- As a user, I want to record my voice notes so that I can quickly log my pain, mood, or thoughts without typing.
-
-### Agile
-
-**Project Board** - link to project board
-
-### Wireframes
-
-<details>
-<summary>
-Desktop
-</summary>
-
-![Desktop Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/readme/desktop-wireframe1.png) 
-
-![Desktop Wireframes - New Entry, Contact Us Form](static/images/readme/desktop-wireframe2.png) 
-</details>
-
-<details>
-<summary>
-Mobile
-</summary>
-
-![Mobile Wireframes - Homepage, Dashboard, Entries, Analytics](static/images/readme/mobile-wireframe1.png)
-
-![Mobile Wireframes - New Entry, Contact Us Form](static/images/readme/mobile-wireframe2.png) 
-
-</details>
-
-### Design Decisions
-
-#### Color Scheme
-- **Primary Color**: #D9EAD3 (Soft green for calm, healing theme)
-- **Secondary Color**: #3A7D7D (Teal for trust and stability)
-- **Accent Color**: #EDEAF6 (Light lavender for highlights/ buttons)
-- **Primary Text Color**: #2F4F4F (Dark slate gray for readability)
-- **Secondary Text Color**: #6B7D7D (Muted teal‑gray conveys calmness and stability)
-
-![Color Palette](static/images/readme/color-palette.png)
-
-#### Color Contrast
-- 
-
-![Color Contrast](static/images/readme/color-contrast.png)
-
-#### Typography
-- **Primary Font**: 'Lato' - Clean, readable sans-serif
-- **Secondary Font**: 'Forum' - Elegant serif for headings
-
-#### Icons
-- Font Awesome icons for consistent visual language
-- Pagelines icon (🍃) as brand symbol representing growth and healing
-- Favicon created by downloading matching Font Awesome Pagelines icon from ICONIFY as a png then importing it to favicon.io
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
@@ -268,12 +271,12 @@ Visit http://127.0.0.1:8000 to view the application.
 ## Database Design
 
 ### Entity Relationship Diagram
+- I created the ERD with [DiagramGPT](https://www.eraser.io/diagramgpt).
 
-User (Django built-in)
-├── DiaryEntry (1:Many)
-└── ContactEmail (1:Many)
+![ERD](static/images/readme/erd.png)
 
 ### Models
+
 #### DiaryEntry
 - user: Foreign key to User
 - location: CharField (max 25 chars)
@@ -405,12 +408,5 @@ DEBUG: Set to False for production
 ### Debugging
 
 ## Learning Points
-
-## Contact
-
-#### For questions, suggestions, or support:
-
-- **GitHub Repository:** [The Gentle Journal](https://github.com/AC-dev16/the-gentle-journal)
-- **Project Board:** [View Project Board](https://github.com/users/AC-dev16/projects/9)
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>

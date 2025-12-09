@@ -29,7 +29,7 @@ class TestKeyViewFunctionality(TestCase):
             location='Test Location',
             pain_level=5,
             mood_level=7,
-            sleep_hours=8.0,
+            sleep_hours=8,
             triggers='Test triggers',
             notes='Test notes'
         )
@@ -102,7 +102,7 @@ class TestKeyViewFunctionality(TestCase):
             'location': 'New Location',
             'pain_level': 6,
             'mood_level': 5,
-            'sleep_hours': 7.5,
+            'sleep_hours': 7,
             'triggers': 'New triggers',
             'notes': 'New notes'
         }
@@ -142,7 +142,7 @@ class TestKeyViewFunctionality(TestCase):
             location='Other User Location',
             pain_level=1,
             mood_level=1,
-            sleep_hours=1.0
+            sleep_hours=1
         )
         
         self.client.login(username='testuser', password='testpass123')
@@ -175,7 +175,7 @@ class TestKeyViewFunctionality(TestCase):
             'location': 'Updated Location',
             'pain_level': 8,
             'mood_level': 4,
-            'sleep_hours': 6.0,
+            'sleep_hours': 6,
             'triggers': 'Updated triggers',
             'notes': 'Updated notes'
         }
@@ -199,7 +199,7 @@ class TestKeyViewFunctionality(TestCase):
             location='Other Location',
             pain_level=1,
             mood_level=1,
-            sleep_hours=1.0
+            sleep_hours=1
         )
         
         self.client.login(username='testuser', password='testpass123')
@@ -236,7 +236,7 @@ class TestKeyViewFunctionality(TestCase):
             location='Other Location',
             pain_level=1,
             mood_level=1,
-            sleep_hours=1.0
+            sleep_hours=1
         )
         
         self.client.login(username='testuser', password='testpass123')
@@ -321,7 +321,7 @@ class TestKeyViewFunctionality(TestCase):
             'location': 'Message Test',
             'pain_level': 5,
             'mood_level': 5,
-            'sleep_hours': 8.0
+            'sleep_hours': 8
         }
         
         response = self.client.post(reverse('entry_create'), entry_data)
@@ -388,7 +388,7 @@ class TestFormIntegrationWithViews(TestCase):
             'location': 'a' * 30,  # Over 25 character limit
             'pain_level': 5,
             'mood_level': 5,
-            'sleep_hours': 8.0
+            'sleep_hours': 8
         }
         
         response = self.client.post(reverse('entry_create'), invalid_data)
@@ -418,7 +418,7 @@ class TestUserDataSecurity(TestCase):
             location='User1 Location',
             pain_level=1,
             mood_level=1,
-            sleep_hours=1.0
+            sleep_hours=1
         )
         
         self.user2_entry = DiaryEntry.objects.create(
@@ -426,7 +426,7 @@ class TestUserDataSecurity(TestCase):
             location='User2 Location', 
             pain_level=2,
             mood_level=2,
-            sleep_hours=2.0
+            sleep_hours=2
         )
 
     def test_user_data_isolation_in_analytics(self):

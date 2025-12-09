@@ -1,10 +1,18 @@
 from django import forms
 from .models import DiaryEntry, ContactEmail
 
+
 class DiaryEntryForm(forms.ModelForm):
     class Meta:
         model = DiaryEntry
-        fields = ['location', 'pain_level', 'mood_level', 'sleep_hours', 'triggers', 'notes']
+        fields = [
+            'location',
+            'pain_level',
+            'mood_level',
+            'sleep_hours',
+            'triggers',
+            'notes'
+            ]
         widgets = {
             'pain_level': forms.NumberInput(attrs={
                 'type': 'range',
@@ -35,12 +43,13 @@ class DiaryEntryForm(forms.ModelForm):
                 'placeholder': 'Additional notes about your condition... (max: 1000 characters)'
             })
         }
-        
+
         # Remove help_texts to eliminate hint elements
         help_texts = {
             'triggers': '',
             'notes': '',
         }
+
 
 class QuickEntryForm(forms.ModelForm):
     class Meta:
@@ -64,6 +73,7 @@ class QuickEntryForm(forms.ModelForm):
                 'id': 'quickMoodLevelSlider'
             })
         }
+
 
 class ContactEmailForm(forms.ModelForm):
     class Meta:

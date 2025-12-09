@@ -1,6 +1,6 @@
 # The Gentle Journal
 
-![The Gentle Journal](image.png) 
+![The Gentle Journal - Project Banner](image.png) 
 
 
 A compassionate web application for tracking pain, mood, and wellness journey. Built with Django and Bootstrap 5, The Gentle Journal provides users with an intuitive platform to monitor their health patterns and share meaningful data with healthcare providers.

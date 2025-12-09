@@ -10,10 +10,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import DiaryEntryForm, QuickEntryForm, ContactEmailForm
 from .models import DiaryEntry, ContactEmail
 
+
 # Create your views here.
 def homepage(request):
     """Homepage with site information and auth buttons"""
     return render(request, 'diary_entries/homepage.html')
+
 
 def contact(request):
     """
@@ -39,20 +41,26 @@ def contact(request):
     else:
         contact_form = ContactEmailForm()
 
-    return render(request, 'diary_entries/contact_form.html', {'contact_form': contact_form})
+    return render(
+        request,
+        'diary_entries/contact_form.html',
+        {'contact_form': contact_form}
+        )
+
 
 class DiaryEntryListView(LoginRequiredMixin, generic.ListView):
     model = DiaryEntry
     template_name = 'diary_entries/entries.html'
     context_object_name = 'entries'
     paginate_by = 10
-    
+
     def get_queryset(self):
         return DiaryEntry.objects.filter(user=self.request.user).order_by('-created_at')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
 
 # User dashboard view with quick entry form
 @login_required
@@ -65,7 +73,7 @@ def dashboard(request):
         An instance of :form:`diary_entries.QuickEntryForm`.
     ``entries``
         All entries related to the user.
-    ``user`` 
+    ``user``
         An instance of :model:`diary_entries.DiaryEntry`.
     ``greeting``
         Creates a greeting based on the time of day.
@@ -112,16 +120,17 @@ def dashboard(request):
 
     return render(request, 'diary_entries/dashboard.html', context)
 
+
 # Create a new diary entry
 @login_required
 def entry_create(request):
     """
     Create a new diary entry
-    
+
     **Context**
     ``form``
         An instance of :form:`diary_entries.DiaryEntryForm`.
-    
+
     **Template**
         :template:`diary_entries/entry_details.html`.
     """
@@ -138,12 +147,13 @@ def entry_create(request):
 
     return render(request, 'diary_entries/entry_details.html', {'form': form})
 
+
 # Edit an existing diary entry
 @login_required
 def edit_entry(request, entry_id):
     """
     Edit a diary entry belonging to the current user
-    
+
     **Context**
     ``form``
         An instance of :form:`diary_entries.DairyEntryForm`.
@@ -167,14 +177,19 @@ def edit_entry(request, entry_id):
     else:
         form = DiaryEntryForm(instance=entry)
 
-    return render(request, 'diary_entries/entry_details.html', {'form': form, 'entry': entry})
+    return render(
+        request,
+        'diary_entries/entry_details.html',
+        {'form': form, 'entry': entry}
+        )
+
 
 # List all entries
 @login_required
 def entry_list(request):
     """
     List all user entries in date order
-    
+
     **Context**
     ``entries``
         An instance of :models:`diary_entries.DiaryEntry`.
@@ -185,6 +200,7 @@ def entry_list(request):
 
     entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
     return render(request, 'diary_entries/entries.html', {'entries': entries})
+
 
 # Delete an entry
 @login_required
@@ -197,6 +213,7 @@ def delete_entry(request, entry_id):
     entry.delete()
     messages.success(request, 'Diary entry deleted successfully!')
     return redirect('entries')
+
 
 @login_required
 def analytics_view(request):
@@ -217,27 +234,28 @@ def analytics_view(request):
         :template:`diary_entries/analytics.html`.
     """
     user_entries = DiaryEntry.objects.filter(user=request.user).order_by('-created_at')
-    
+
     # Basic statistics
     total_entries = user_entries.count()
     avg_pain = user_entries.aggregate(avg_pain=Avg('pain_level'))['avg_pain'] or 0
     avg_mood = user_entries.aggregate(avg_mood=Avg('mood_level'))['avg_mood'] or 0
     avg_sleep = user_entries.aggregate(avg_sleep=Avg('sleep_hours'))['avg_sleep'] or 0
-    
+
     context = {
         'total_entries': total_entries,
         'avg_pain': round(avg_pain, 1),
         'avg_mood': round(avg_mood, 1),
         'avg_sleep': round(avg_sleep, 1),
     }
-    
+
     return render(request, 'diary_entries/analytics.html', context)
+
 
 @login_required
 def analytics_data_api(request):
     """
     API endpoint for chart data with date filtering
-    
+
     **Context**
     ``days``
         Number of days to filter entries.
@@ -253,23 +271,23 @@ def analytics_data_api(request):
 
     """
     days = request.GET.get('days', '30')  # Default to 30 days
-    
+
     try:
         days_int = int(days)
     except ValueError:
         days_int = 30
-    
+
     # Calculate date range
     end_date = timezone.now()
     start_date = end_date - timedelta(days=days_int)
-    
+
     # Get user entries within date range
     user_entries = DiaryEntry.objects.filter(
         user=request.user,
         created_at__gte=start_date,
         created_at__lte=end_date
     ).order_by('created_at')
-    
+
     # Prepare chart data
     chart_data = {
         'labels': [],
@@ -283,12 +301,12 @@ def analytics_data_api(request):
             'days': days_int
         }
     }
-    
+
     # Format data for charts
     for entry in user_entries:
         chart_data['labels'].append(entry.created_at.strftime('%m/%d'))
         chart_data['pain_data'].append(entry.pain_level)
         chart_data['mood_data'].append(entry.mood_level)
         chart_data['sleep_data'].append(entry.sleep_hours)
-    
+
     return JsonResponse(chart_data)

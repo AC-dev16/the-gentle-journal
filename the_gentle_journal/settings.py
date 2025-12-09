@@ -129,14 +129,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ACCOUNT_EMAIL_VERIFICATION = 'none' # options: 'mandatory', 'optional', or 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # options:'mandatory', 'optional', 'none'
 ACCOUNT_USERNAME_REQUIRED = True
 
 
 CSRF_TRUSTED_ORIGINS = [
     'https://*.herokuapp.com',
-    'http://*.codeinstitute-ide.net',
-    ] 
+    'http://*.codeinstitute-ide.net', ]
 
 
 # Internationalization

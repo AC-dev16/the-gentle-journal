@@ -491,7 +491,19 @@ DEBUG: Set to False for production
 
 ### Code Creation
 
+GitHub Copilot was utilized throughout the development of The Gentle Journal to accelerate development and enhance code quality. Copilot assisted primarily in:
+
+- **JavaScript Implementation**: Generating complex Chart.js configurations for the analytics dashboard, including dual y-axis setups, responsive chart options, and interactive data toggle functionality
+- **Django Views and Models**: Suggesting efficient query patterns, form validation logic, and view structure for CRUD operations while ensuring proper user authentication and data isolation
+- **CSS Styling**: Providing responsive design solutions, particularly for the interactive slider components with color-coded pain level indicators and modal layouts across different screen sizes
+- **Testing Framework**: Generating comprehensive Django TestCase methods for form validation, view functionality, and security testing, significantly improving test coverage
+- **Documentation**: Assisting with docstring creation, code comments, and README structure to maintain clear, professional documentation standards
+
+Copilot's suggestions were carefully reviewed and adapted to fit the specific healthcare context and user experience requirements of the application, ensuring that all generated code aligned with accessibility standards and Django best practices.
+
 ### Debugging
+
+GitHub Copilot proved invaluable during the debugging process, particularly when resolving complex issues such as HTML validation errors with Django form widgets, JavaScript scope conflicts between analytics and main script files, and CSS specificity problems with Bootstrap overrides. The AI assistance helped identify root causes more quickly and suggested targeted solutions that maintained code consistency across the application.
 
 ## Learning Points
 

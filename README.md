@@ -223,7 +223,7 @@ Django==4.2.26 dj-database-url==2.1.0 gunicorn==22.0.0 whitenoise==6.7.0 django-
   - Location (where you are)
   - Pain Level (0-10 slider)
   - Mood Level (1-10 slider)
-  - Sleep Hours (with decimal support)
+  - Sleep Hours
   - Triggers (optional, max 300 characters)
   - Notes (optional, max 1000 characters)
 - Save your entry
@@ -307,9 +307,57 @@ Django==4.2.26 dj-database-url==2.1.0 gunicorn==22.0.0 whitenoise==6.7.0 django-
 
 #### Tested on:
 
-- Desktop (1920x1080, 1366x768)
-- Tablet (768x1024, 820x1180)
-- Mobile (375x667, 414x896, 390x844)
+<details>
+<summary>
+Desktop
+</summary>
+  <div>
+    <img src="static/images/readme/desktop-homepage.png" width="300">
+    <img src="static/images/readme/desktop-dashboard.png" width="300">
+    <img src="static/images/readme/desktop-entries.png" width="300">
+    <img src="static/images/readme/desktop-entryform.png" width="300">
+    <img src="static/images/readme/desktop-analytics.png" width="300">
+    <img src="static/images/readme/desktop-contact.png" width="300">
+    <img src="static/images/readme/desktop-modal.png" width="300">
+    <img src="static/images/readme/desktop-signup.png" width="300">
+    <img src="static/images/readme/desktop-login.png" width="300">
+  </div>
+</details>
+
+<details>
+<summary>
+Tablet
+</summary>
+  <div>
+    <img src="static/images/readme/tablet-homepage.png" width="300" height="370">
+    <img src="static/images/readme/tablet-dashboard.png" width="300" height="370">
+    <img src="static/images/readme/tablet-entries.png" width="300" height="370">
+    <img src="static/images/readme/tablet-entryform.png" width="300" height="370">
+    <img src="static/images/readme/tablet-analytics.png" width="300" height="370">
+    <img src="static/images/readme/tablet-contact.png" width="300" height="370">
+    <img src="static/images/readme/tablet-modal.png" width="300" height="370">
+    <img src="static/images/readme/tablet-signup.png" width="300" height="370">
+    <img src="static/images/readme/tablet-login.png" width="300" height="370">
+  </div>
+</details>
+
+<details>
+<summary>
+Mobile
+</summary>
+  <div>
+    <img src="static/images/readme/mobile-homepage.png" width="200" height="500">
+    <img src="static/images/readme/mobile-dashboard.png" width="200" height="500">
+    <img src="static/images/readme/mobile-entries.png" width="200" height="500">
+    <img src="static/images/readme/mobile-entryform.png" width="200" height="500">
+    <img src="static/images/readme/mobile-analytics.png" width="200" height="500">
+    <img src="static/images/readme/mobile-analytics1.png" width="200" height="500">
+    <img src="static/images/readme/mobile-contact.png" width="200" height="500">
+    <img src="static/images/readme/mobile-modal.png" width="200" height="500">
+    <img src="static/images/readme/mobile-signup.png" width="200" height="500">
+    <img src="static/images/readme/mobile-login.png" width="200" height="500">
+  </div>
+</details>
 
 ### Automated Testing
 

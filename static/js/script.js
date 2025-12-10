@@ -1,4 +1,6 @@
 /* eslint-env browser */
+/* global bootstrap */
+
 // ============================================
 // UTILITY FUNCTIONS (Define first)
 // ============================================
@@ -7,12 +9,12 @@ function initializeCharacterCounters() {
     const counters = document.querySelectorAll('.character-counter');
     
     counters.forEach(counter => {
-        const maxLength = parseInt(counter.getAttribute('data-max'), 10); // ✅ Added radix
+        const maxLength = parseInt(counter.getAttribute('data-max'), 10);
         const fieldContainer = counter.closest('.mb-3, .mb-4');
         const textarea = fieldContainer.querySelector('textarea');
         
         if (textarea && maxLength) {
-            function updateCounter() {
+            const updateCounter = () => {
                 const remaining = maxLength - textarea.value.length;
                 counter.textContent = `${remaining} characters remaining`;
                 
@@ -22,7 +24,7 @@ function initializeCharacterCounters() {
                 } else {
                     counter.classList.remove('warning');
                 }
-            }
+            };
             
             textarea.addEventListener('input', updateCounter);
             updateCounter(); // Initialize
@@ -48,8 +50,8 @@ function initializeSlider(config) {
 
     if (!slider || !valueDisplay) return;
 
-    function updateSlider() {
-        const value = parseInt(slider.value, 10); // ✅ Added radix
+    const updateSlider = () => {
+        const value = parseInt(slider.value, 10);
         valueDisplay.textContent = value;
 
         // Calculate position based on slider type
@@ -66,7 +68,7 @@ function initializeSlider(config) {
         if (config.type === 'pain' && container) {
             updatePainColorCoding(container, value);
         }
-    }
+    };
 
     slider.addEventListener('input', updateSlider);
     updateSlider(); // Initialize
@@ -305,10 +307,6 @@ class ProgressiveSpeechHandler {
         }
     }
     
-    updateVisualFeedback() {
-        // Add visual feedback method if needed
-    }
-    
     resetActiveState() {
         this.activeButton = null;
         this.activeFieldContainer = null;
@@ -381,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (painInput) {
             painInput.addEventListener('input', function() {
-                const value = parseInt(this.value, 10); // ✅ Added radix
+                const value = parseInt(this.value, 10);
                 if (value < 0) this.value = 0;
                 if (value > 10) this.value = 10;
             });
@@ -389,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (moodInput) {
             moodInput.addEventListener('input', function() {
-                const value = parseInt(this.value, 10); // ✅ Added radix
+                const value = parseInt(this.value, 10);
                 if (value < 0) this.value = 0;
                 if (value > 10) this.value = 10;
             });
@@ -397,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (sleepInput) {
             sleepInput.addEventListener('input', function() {
-                const value = parseFloat(this.value); // ✅ parseFloat doesn't need radix
+                const value = parseFloat(this.value);
                 if (value < 0) this.value = 0;
                 if (value > 24) this.value = 24;
             });

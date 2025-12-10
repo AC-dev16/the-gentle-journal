@@ -28,7 +28,7 @@ class DiaryEntryForm(forms.ModelForm):
         widgets = {
             'location': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Where are you today?',
+                'placeholder': 'Where is your pain today?',
                 'maxlength': '25'
             }),
             'pain_level': RangeInput(attrs={  # ← Use custom widget
@@ -73,7 +73,7 @@ class QuickEntryForm(forms.ModelForm):
         widgets = {
             'location': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Where are you today?',
+                'placeholder': 'Where is your pain today?',
                 'maxlength': '25'
             }),
             'pain_level': RangeInput(attrs={  # ← Use custom widget

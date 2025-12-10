@@ -215,6 +215,7 @@ def delete_entry(request, entry_id):
     return redirect('entries')
 
 
+# Analytics dashboard
 @login_required
 def analytics_view(request):
     """
@@ -251,6 +252,7 @@ def analytics_view(request):
     return render(request, 'diary_entries/analytics.html', context)
 
 
+# API endpoint for chart data
 @login_required
 def analytics_data_api(request):
     """

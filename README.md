@@ -91,9 +91,9 @@ All color combinations have been tested using the [WebAIM Contrast Checker](http
 - **Secondary Font**: 'Forum' - Elegant serif for headings
 
 #### Icons
-- Font Awesome icons for consistent visual language
-- Pagelines icon (🍃) as brand symbol representing growth and healing
-- Favicon created by downloading matching Font Awesome Pagelines icon from ICONIFY as a png then importing it to favicon.io
+- [Font Awesome](https://fontawesome.com/) icons for consistent visual language
+- Pagelines icon as brand symbol representing growth and healing
+- Favicon created by downloading matching Font Awesome Pagelines icon from [ICONIFY](https://iconify.design/) as a png then importing it to [favicon.io](https://favicon.io/).
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
@@ -399,8 +399,9 @@ Contact
 **HTML validator**
 
 I used [HTML Validation]() to test all my templates. Errors Encountered:
-- Duplicated IDs: This was an error caused by having an 'id' (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the 'id' and using a class instead.
-- I had a div element with a aria-labelledby but without a role. This caused an error because, by default, a div is a generic, non-semantic element that is not part of the accessibility tree. 
+- **Duplicated IDs**: This was an error caused by having an 'id' (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the 'id' and using a class instead.
+- **Accessibility Compliance**: A validation error was identified where a `div` element contained an `aria-labelledby` attribute without a corresponding `role` attribute. This violates accessibility guidelines as `div` elements are semantically neutral and not part of the accessibility tree by default. The issue was resolved by adding an appropriate `role` attribute.
+- **Range Input Validation**: Initial HTML validation errors occurred because Django automatically adds the `required` attribute to range input sliders, which is invalid HTML5 syntax. This was resolved by creating a custom `RangeInput` widget in [`forms.py`](diary_entries/forms.py) that removes the `required` attribute during rendering, ensuring clean HTML output while maintaining server-side form validation functionality.
 
 ![HTML validator - homepage](static/images/readme/html-validator-homepage.png)
 

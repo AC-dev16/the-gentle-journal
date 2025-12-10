@@ -109,8 +109,8 @@ All color combinations have been tested using the [WebAIM Contrast Checker](http
 - User profile management
 
 <div>
-  <img src="static/images/readme/sign-up.png" width="300">
-  <img src="static/images/readme/login.png" width="300">
+  <img src="static/images/readme/sign-up.png" width="200" height="450">
+  <img src="static/images/readme/login.png" width="200" height="450">
 </div>
 
 #### Dashboard
@@ -165,10 +165,12 @@ All color combinations have been tested using the [WebAIM Contrast Checker](http
   <img src="static/images/readme/desktop-analytics.png" width="600">
 </div>
 
-
-
 ### Planned Features
 
+- Log multiple locations within one entry
+- Daily logging notification reminders
+- Analytics page to allow viewing of full entry when clicked on the graph
+- 7 day line graph viewable from Dashboard 
 - Data export functionality (PDF, CSV)
 - Detailed Statistical analysis and trends
 - Calendar view of entries
@@ -424,11 +426,12 @@ Contact
 **HTML validator**
 
 I used [HTML Validation]() to test all my templates. Errors Encountered:
-- **Duplicated IDs**: This was an error caused by having an 'id' (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the 'id' and using a class instead.
+- **Duplicated IDs**: This was an error caused by having an 'id' (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the `id` and using a `class` instead.
 - **Accessibility Compliance**: A validation error was identified where a `div` element contained an `aria-labelledby` attribute without a corresponding `role` attribute. This violates accessibility guidelines as `div` elements are semantically neutral and not part of the accessibility tree by default. The issue was resolved by adding an appropriate `role` attribute.
 - **Range Input Validation**: Initial HTML validation errors occurred because Django automatically adds the `required` attribute to range input sliders, which is invalid HTML5 syntax. This was resolved by creating a custom `RangeInput` widget in [`forms.py`](diary_entries/forms.py) that removes the `required` attribute during rendering, ensuring clean HTML output while maintaining server-side form validation functionality.
+- **Django Allauth Integration**: During validation testing of the Sign Up page, four HTML validation errors were identified within the Django Allauth authentication framework's auto-generated markup. These errors originate from the third-party library's form rendering and are outside the scope of custom application code modifications, representing a known limitation when integrating Django Allauth with strict HTML validation standards.
 
-![HTML validator - homepage](static/images/readme/html-validator-homepage.png)
+![HTML validator - homepage](static/images/readme/signup-validation-errors.png)
 
 **CSS Validator**
 

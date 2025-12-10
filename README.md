@@ -17,7 +17,6 @@ The Gentle Journal is a compassionate web application for tracking pain, mood, a
   - [Design Decisions](#design-decisions)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Installation & Setup](#installation--setup)
 - [Usage](#usage)
 - [Database Design](#database-design)
 - [Testing](#testing)
@@ -44,6 +43,8 @@ The Gentle Journal is a compassionate web application for tracking pain, mood, a
 This project was developed using Agile methodology through GitHub's project management tools. A [GitHub Project Board](https://github.com/users/AC-dev16/projects/9) was utilized to organize and track development progress, breaking down features into manageable user stories and tasks. The project board employed a Kanban-style workflow with columns for "Backlog", "To Do," "In Progress," and "Done," allowing for iterative development and continuous improvement. User stories were prioritized based on core functionality requirements, with essential features like user authentication, diary entry CRUD operations, and the dashboard implemented first, followed by enhanced features like analytics visualization and contact functionality. This approach enabled efficient project management, clear visibility of development progress, and ensured that the most valuable features were delivered early in the development cycle.
 
 ### Wireframes
+
+**Wireframes created using [Balsamiq](https://balsamiq.com/)**
 
 <details>
 <summary>
@@ -107,28 +108,64 @@ All color combinations have been tested using the [WebAIM Contrast Checker](http
 - Email verification (optional)
 - User profile management
 
+<div>
+  <img src="static/images/readme/sign-up.png" width="300">
+  <img src="static/images/readme/login.png" width="300">
+</div>
+
 #### Dashboard
 - Personalized greeting based on time of day
 - Quick entry form for rapid logging
 - Recent entries overview
 - Visual pain level indicators with color coding
 
-#### Diary Entries
+<div>
+  <img src="static/images/readme/desktop-dashboard.png" width="600">
+</div>
+
+#### My Entries
+- **Entry Management**: View, edit, and delete existing entries
+<div>
+  <img src="static/images/readme/desktop-entries.png" width="600">
+</div>
+
+- **Modal Views**: Quick preview of entries with full details
+<div>
+  <img src="static/images/readme/desktop-modal.png" width="600">
+</div>
+
+#### Detailed Entry Form
 - **Detailed Entry Creation**: Track location, pain levels (0-10), mood levels (1-10), sleep hours, triggers, and notes
 - **Interactive Sliders**: Visual sliders for pain and mood level input
-- **Entry Management**: View, edit, and delete existing entries
 - **Character Limits**: Enforced limits on triggers (300 chars) and notes (1000 chars)
-- **Modal Views**: Quick preview of entries with full details
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-
-#### Data Visualization
-- Color-coded pain level indicators
-- Pain level ranges (0-2: Green, 3-5: Yellow, 6-8: Orange, 9-10: Red)
-- Visual feedback for form interactions
+- **Color-coded pain level indicators**
+- **Pain level ranges** 0-2: Green, 3-5: Yellow, 6-8: Orange, 9-10: Red
+- **Visual feedback for form interactions**
+<div>
+  <img src="static/images/readme/desktop-entryform.png" width="600">
+</div>
 
 #### Contact System
 - Contact form for user inquiries
 - Admin management of contact messages
+<div>
+  <img src="static/images/readme/desktop-contact.png" width="600">
+</div>
+
+#### Analytics Page
+
+- **Interactive Dashboard**: Visual summary cards displaying total entries, average pain levels (0-10), average mood levels (1-10), and average sleep hours
+- **Timeline Analysis**: Dynamic line chart built with Chart.js showing pain, mood, and sleep data trends over customizable time periods (7 days, 1 month, 3 months, 1 year)
+- **Data Visualization Controls**: Toggle buttons to show/hide individual datasets (pain, mood, sleep) on the chart for focused analysis
+- **Personalized Insights**: AI-powered insights engine that analyzes user data patterns and provides actionable feedback on pain management, mood trends, and sleep quality
+- **Trend Detection**: Automatic calculation of improving or declining trends in pain and mood levels with encouraging or supportive messaging
+- **Responsive Chart Design**: Mobile-optimized charts with dual y-axes for different data scales and interactive tooltips for detailed data points
+- **Real-time API Integration**: Chart data loaded via Django REST API endpoint with date filtering to ensure current and relevant analytics
+<div>
+  <img src="static/images/readme/desktop-analytics.png" width="600">
+</div>
+
+
 
 ### Planned Features
 
@@ -172,66 +209,6 @@ All color combinations have been tested using the [WebAIM Contrast Checker](http
 ```
 Django==4.2.26 dj-database-url==2.1.0 gunicorn==22.0.0 whitenoise==6.7.0 django-allauth==0.63.3 django-crispy-forms==2.1 crispy-bootstrap5==2024.2 django-summernote==0.8.20.0
 ```
-
-<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
-
-## Installation & Setup
-
-### Prerequisites
-
-- Python 3.8+
-- Git
-- PostgreSQL (for production)
-
-### Local Development Setup
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/the-gentle-journal.git
-cd the-gentle-journal
-```
-
-2. **Create virtual environment**
-```
-python -m venv venv
-source venv/bin/activate
-```
-
-3. **Install dependencies**
-```
-pip install -r requirements.txt
-```
-
-4. **Environment Variables**
-Create env.py in the root directory
-```
-import os
-
-os.environ['SECRET_KEY'] = 'your-secret-key-here'
-os.environ['DATABASE_URL'] = 'your-database-url'  # Optional for local development
-```
-
-5. **Database Migration**
-```
-python manage.py makemigrations
-python manage.py migrate
-```
-
-6. **Create Superuser**
-```
-python manage.py createsuperuser
-```
-
-7. **Collect Static Files**
-```
-python manage.py collectstatic
-```
-
-8. **Run Development Server**
-```
-python manage.py runserver
-```
-Visit http://127.0.0.1:8000 to view the application.
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
@@ -407,7 +384,7 @@ I used [HTML Validation]() to test all my templates. Errors Encountered:
 
 **CSS Validator**
 
-I used [CSS Validation]() with no errors found.
+I used [CSS Validation](https://jigsaw.w3.org/css-validator/) with no errors found.
 
 ![CSS Validtion](static/images/readme/css-validator.png)
 
@@ -415,52 +392,47 @@ I used [CSS Validation]() with no errors found.
 
 I used [Code Institutes Python Linter](https://pep8ci.herokuapp.com/) to validate all Python files.
 
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
 ## Deployment
 
 ### Heroku Deployment
 
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
+1. Create Heroku App
+  - Log into Heroku, click 'New' followed by 'Create new app'
+  - Choose a unique name for the app 
+2. Set up Database
+  - Used PostgreSQL for production on Heroku to provide better performance, reliability and scalability. 
+3. Configure Environment Variables
+  - Secret keys, database credentials and other sensitive data are stored within Heroku's 'Config Vars' under the 'Settings' tab. This maintains security while still allowing the app to adapt to different development environments 
+4. Django Preparation
+  - Install gunicorn, dj-database-url and psycopg2
+  - Add these to requirements.txt
+  - Create a Procfile with the following code: web: gunicorn the_gentle_journal.wsgi
+  - Update settings.py: 
+    ```
+    DEBUG = False
+    ALLOWED_HOSTS = ['.herokuapp.com', ]
+    ```
+  - Configure static file handling with whitenoise
+5. Add, Commit and Push to GitHub
+6. Link GitHub repository to Heroku
+  - Click 'Deploy' tab in Heroku Dashboard
+  - Scroll down to 'Deployment Method' and select 'GitHub' 
+  - Begin searching for repo and connect
+7. Deploy App
+  - Continue scrolling down to 'Manual deploy'
+  - 'Choose a branch to deploy' set to 'main'
+  - Click 'Deploy Branch'
+8. Wait for the build to complete then click 'Open App' at the top right of the Deploy page
 
 ### Environment Variables
 #### Required for production:
 ```
-SECRET_KEY: Django secret key
+SECRET_KEY: Unique secret key
 DATABASE_URL: PostgreSQL connection string
 DEBUG: Set to False for production
 ```
-
-<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
-
-## Credits
-
-### Development
-
-- Developer: [Your Name]
-- Framework: Django Project by Django Software Foundation
-- Inspiration: Healthcare tracking and wellness applications
-
-### Design Assets
-
-- Icons: Font Awesome
-- Fonts: Google Fonts (Lato, Forum)
-- Color Palette: Custom design based on healing/wellness themes
-
-### Resources
-
-- Django Documentation
-- Bootstrap Documentation
-- MDN Web Docs
-- Stack Overflow Community
-
-### Acknowledgments
-
-- Code Institute for project guidance
-- Django community for excellent documentation
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
@@ -471,5 +443,33 @@ DEBUG: Set to False for production
 ### Debugging
 
 ## Learning Points
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
+
+## Credits
+
+### Development
+
+- Framework: Django Project by Django Software Foundation
+- Inspiration: Healthcare tracking and wellness applications
+
+### Design Assets
+
+- Icons: [Font Awesome](https://fontawesome.com/)
+- Fonts: [Google Fonts](https://fonts.google.com/)
+- Color Palette: [Coolors](https://coolors.co/?home)
+
+### Resources
+
+- [Django Documentation](https://docs.djangoproject.com/en/6.0/)
+- [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [Stack Overflow Community](https://stackoverflow.com/questions)
+
+### Acknowledgments
+
+- Code Institute for project guidance
+- Django community for excellent documentation
+- Copilot within VSCode
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>

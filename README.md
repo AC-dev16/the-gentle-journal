@@ -371,6 +371,8 @@ The application includes comprehensive automated testing using Django's TestCase
 - **Security Testing** verifies that users can only access and modify their own data, with comprehensive tests ensuring proper 404 responses when users attempt to access other users' entries. 
 - The test suite employs Django's built-in database isolation, setUp methods for consistent test data, and covers edge cases such as form validation errors, user authentication flows, and data security boundaries. All tests can be executed with `python manage.py test diary_entries` and provide confidence in the application's stability and security for production deployment.
 
+![Django TestCase Results](static/images/readme/testcase.png)
+
 ### Lighthouse
 
 **Homepage**

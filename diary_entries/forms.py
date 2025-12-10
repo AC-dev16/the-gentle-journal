@@ -1,5 +1,17 @@
 from django import forms
+from django.forms.widgets import NumberInput
 from .models import DiaryEntry, ContactEmail
+
+
+class RangeInput(NumberInput):
+    input_type = 'range'
+
+    def build_attrs(self, base_attrs, extra_attrs=None):
+        # Build the attributes normally
+        attrs = super().build_attrs(base_attrs, extra_attrs)
+        # Remove the required attribute for range inputs
+        attrs.pop('required', None)
+        return attrs
 
 
 class DiaryEntryForm(forms.ModelForm):
@@ -12,42 +24,45 @@ class DiaryEntryForm(forms.ModelForm):
             'sleep_hours',
             'triggers',
             'notes'
-            ]
+        ]
         widgets = {
-            'pain_level': forms.NumberInput(attrs={
-                'type': 'range',
+            'location': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Where are you today?',
+                'maxlength': '25'
+            }),
+            'pain_level': RangeInput(attrs={  # ← Use custom widget
                 'min': 0,
                 'max': 10,
                 'step': 1,
                 'class': 'form-range',
                 'id': 'painLevelSlider'
             }),
-            'mood_level': forms.NumberInput(attrs={
-                'type': 'range',
+            'mood_level': RangeInput(attrs={  # ← Use custom widget
                 'min': 1,
                 'max': 10,
                 'step': 1,
                 'class': 'form-range',
                 'id': 'moodLevelSlider'
             }),
+            'sleep_hours': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'step': 0.5,
+                'min': 0,
+                'max': 24
+            }),
             'triggers': forms.Textarea(attrs={
+                'class': 'form-control',
                 'rows': 5,
                 'maxlength': 300,
-                'class': 'form-control',
-                'placeholder': 'What triggered your pain today? (max: 300 characters)'
+                'placeholder': 'What triggered your pain today?'
             }),
             'notes': forms.Textarea(attrs={
+                'class': 'form-control',
                 'rows': 5,
                 'maxlength': 1000,
-                'class': 'form-control',
-                'placeholder': 'Additional notes about your condition... (max: 1000 characters)'
-            })
-        }
-
-        # Remove help_texts to eliminate hint elements
-        help_texts = {
-            'triggers': '',
-            'notes': '',
+                'placeholder': 'Additional notes about your day...'
+            }),
         }
 
 
@@ -56,22 +71,25 @@ class QuickEntryForm(forms.ModelForm):
         model = DiaryEntry
         fields = ['location', 'pain_level', 'mood_level']
         widgets = {
-            'pain_level': forms.NumberInput(attrs={
-                'type': 'range',
+            'location': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Where are you today?',
+                'maxlength': '25'
+            }),
+            'pain_level': RangeInput(attrs={  # ← Use custom widget
                 'min': 0,
                 'max': 10,
                 'step': 1,
                 'class': 'form-range',
                 'id': 'quickPainLevelSlider'
             }),
-            'mood_level': forms.NumberInput(attrs={
-                'type': 'range',
+            'mood_level': RangeInput(attrs={  # ← Use custom widget
                 'min': 1,
                 'max': 10,
                 'step': 1,
                 'class': 'form-range',
                 'id': 'quickMoodLevelSlider'
-            })
+            }),
         }
 
 

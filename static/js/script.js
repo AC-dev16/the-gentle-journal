@@ -1,3 +1,4 @@
+/* eslint-env browser */
 // ============================================
 // UTILITY FUNCTIONS (Define first)
 // ============================================
@@ -6,7 +7,7 @@ function initializeCharacterCounters() {
     const counters = document.querySelectorAll('.character-counter');
     
     counters.forEach(counter => {
-        const maxLength = parseInt(counter.getAttribute('data-max'));
+        const maxLength = parseInt(counter.getAttribute('data-max'), 10); // ✅ Added radix
         const fieldContainer = counter.closest('.mb-3, .mb-4');
         const textarea = fieldContainer.querySelector('textarea');
         
@@ -48,7 +49,7 @@ function initializeSlider(config) {
     if (!slider || !valueDisplay) return;
 
     function updateSlider() {
-        const value = parseInt(slider.value);
+        const value = parseInt(slider.value, 10); // ✅ Added radix
         valueDisplay.textContent = value;
 
         // Calculate position based on slider type
@@ -380,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (painInput) {
             painInput.addEventListener('input', function() {
-                const value = parseInt(this.value);
+                const value = parseInt(this.value, 10); // ✅ Added radix
                 if (value < 0) this.value = 0;
                 if (value > 10) this.value = 10;
             });
@@ -388,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (moodInput) {
             moodInput.addEventListener('input', function() {
-                const value = parseInt(this.value);
+                const value = parseInt(this.value, 10); // ✅ Added radix
                 if (value < 0) this.value = 0;
                 if (value > 10) this.value = 10;
             });
@@ -396,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (sleepInput) {
             sleepInput.addEventListener('input', function() {
-                const value = parseFloat(this.value);
+                const value = parseFloat(this.value); // ✅ parseFloat doesn't need radix
                 if (value < 0) this.value = 0;
                 if (value > 24) this.value = 24;
             });

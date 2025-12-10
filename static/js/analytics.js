@@ -1,3 +1,5 @@
+/* eslint-env browser */
+/* global Chart */
 // Analytics Page JavaScript
 class AnalyticsManager {
     constructor() {

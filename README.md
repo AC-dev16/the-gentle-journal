@@ -423,7 +423,7 @@ Contact
 
 ### Validation Testing
 
-**HTML validator**
+**HTML Validator**
 
 I used [HTML Validation]() to test all my templates. Errors Encountered:
 - **Duplicated IDs**: This was an error caused by having an 'id' (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the `id` and using a `class` instead.
@@ -438,6 +438,31 @@ I used [HTML Validation]() to test all my templates. Errors Encountered:
 I used [CSS Validation](https://jigsaw.w3.org/css-validator/) with no errors found.
 
 ![CSS Validtion](static/images/readme/css-validator.png)
+
+**JavaScript Validator**
+
+I used [ValidateJavaScript](https://validatejavascript.com/) to validate both [`script.js`](static/js/script.js) and [`analytics.js`](static/js/analytics.js) with the following errors:
+
+**Script.js**
+
+- **Missing Radix Parameter**: ESLint flagged multiple instances of `parseInt()` calls without specifying the radix parameter (e.g., `parseInt(slider.value)` instead of `parseInt(slider.value, 10)`). This occurred because JavaScript's `parseInt()` function attempts to guess the number base without an explicit radix, which can lead to unexpected behavior with certain input values. Resolved by adding the decimal radix parameter to all `parseInt()` calls.
+
+- **Function Used Before Declaration**: Initial code structure had function calls in `DOMContentLoaded` before the functions were declared, violating JavaScript hoisting best practices. This was resolved by reorganizing the code with a clear hierarchy: utility functions first, class definitions second, global variables third, composite functions fourth, and main initialization last.
+
+- **Inner Function Declarations**: ESLint detected function declarations nested inside other functions (e.g., `updateSlider()` inside `initializeSlider()`), which is discouraged for scope clarity. Fixed by converting nested function declarations to arrow function expressions (e.g., `const updateSlider = () => { ... }`).
+
+- **Undefined Global Variables**: The linter flagged `'document' is not defined` and `'bootstrap' is not defined` errors because it didn't recognize the browser environment context. Resolved by adding environment directives at the top of the file: `/* eslint-env browser */` and `/* global bootstrap */`.
+
+**Analytics.js**
+
+- **Undefined Global Variables**: The linter flagged `'document' is not defined` and `'Chart' is not defined` errors because it didn't recognize the browser environment context. Resolved by adding environment directives at the top of the file: `/* eslint-env browser */` and `/* global Chart */`.
+
+All validation errors were successfully resolved while maintaining full functionality, resulting in clean, maintainable JavaScript code that follows modern best practices and ESLint standards.
+
+<div>
+  <img src="static/images/readme/js-validator.png" width="550" height="350">
+  <img src="static/images/readme/js-validator1.png" width="550" height="350">
+</div>
 
 **PEP8 Stardards**
 

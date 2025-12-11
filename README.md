@@ -20,7 +20,14 @@ The Gentle Journal is a compassionate web application for tracking pain, mood, a
 - [Usage](#usage)
 - [Database Design](#database-design)
 - [Testing](#testing)
+  - [Manual Testing](#manual-testing)
+  - [Responsive Design](#responsive-design)
+  - [Automated Testing](#automated-testing)
+  - [Lighthouse Testing](#lighthouse)
+  - [Validation Testing](#validation-testing)
 - [Deployment](#deployment)
+- [AI Implementation](#ai-implementation)
+- [Learning Points](#learning-points)
 - [Credits](#credits)
 
 ## User Experience Design (UX)
@@ -307,8 +314,6 @@ Django==4.2.26 dj-database-url==2.1.0 gunicorn==22.0.0 whitenoise==6.7.0 django-
 
 ### Responsive Design
 
-#### Tested on:
-
 <details>
 <summary>
 Desktop
@@ -360,6 +365,8 @@ Mobile
     <img src="static/images/readme/mobile-login.png" width="200" height="500">
   </div>
 </details>
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ### Automated Testing
 
@@ -531,6 +538,8 @@ Copilot's suggestions were carefully reviewed and adapted to fit the specific he
 ### Debugging
 
 GitHub Copilot proved invaluable during the debugging process, particularly when resolving complex issues such as HTML validation errors with Django form widgets, JavaScript scope conflicts between analytics and main script files, and CSS specificity problems with Bootstrap overrides. The AI assistance helped identify root causes more quickly and suggested targeted solutions that maintained code consistency across the application.
+
+<p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## Learning Points
 

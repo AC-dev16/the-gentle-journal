@@ -306,7 +306,7 @@ def analytics_data_api(request):
 
     # Format data for charts
     for entry in user_entries:
-        chart_data['labels'].append(entry.created_at.strftime('%m/%d'))
+        chart_data['labels'].append(entry.created_at.strftime('%d/%m'))
         chart_data['pain_data'].append(entry.pain_level)
         chart_data['mood_data'].append(entry.mood_level)
         chart_data['sleep_data'].append(entry.sleep_hours)

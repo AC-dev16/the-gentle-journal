@@ -47,7 +47,7 @@ class DiaryEntryForm(forms.ModelForm):
             }),
             'sleep_hours': forms.NumberInput(attrs={
                 'class': 'form-control',
-                'step': 0.5,
+                'step': 1,
                 'min': 0,
                 'max': 24
             }),

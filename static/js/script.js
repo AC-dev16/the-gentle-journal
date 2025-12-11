@@ -1,9 +1,7 @@
 /* eslint-env browser */
 /* global bootstrap */
 
-// ============================================
-// UTILITY FUNCTIONS (Define first)
-// ============================================
+// Utility Functions
 
 function initializeCharacterCounters() {
     const counters = document.querySelectorAll('.character-counter');
@@ -205,9 +203,7 @@ function initializeModalHandling() {
     }
 }
 
-// ============================================
-// CLASS DEFINITIONS (Define before usage)
-// ============================================
+// Class Definitions
 
 class ProgressiveSpeechHandler {
     constructor() {
@@ -314,15 +310,11 @@ class ProgressiveSpeechHandler {
     }
 }
 
-// ============================================
-// GLOBAL VARIABLES (Declare before usage)
-// ============================================
+// Global Variables
 
 let speechHandler;
 
-// ============================================
-// COMPOSITE FUNCTIONS (Use previously defined functions)
-// ============================================
+// Composite Functions
 
 function initializeSpeechButtons() {
     // Initialize speech handler if not already done
@@ -358,9 +350,7 @@ function initializeBuiltInControls() {
     initializeSpeechButtons();
 }
 
-// ============================================
-// MAIN INITIALIZATION (Last)
-// ============================================
+// Main Initialization
 
 document.addEventListener('DOMContentLoaded', function() {
     // Form validation and focus handling
@@ -412,7 +402,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // INITIALIZE ALL FUNCTIONALITY
+    // Initialize All Functionality
     initializeAllSliders();
     initializeModalHandling();
     initializeBuiltInControls();

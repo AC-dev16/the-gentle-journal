@@ -31,14 +31,14 @@ class DiaryEntryForm(forms.ModelForm):
                 'placeholder': 'Where is your pain today?',
                 'maxlength': '25'
             }),
-            'pain_level': RangeInput(attrs={  # ← Use custom widget
+            'pain_level': RangeInput(attrs={
                 'min': 0,
                 'max': 10,
                 'step': 1,
                 'class': 'form-range',
                 'id': 'painLevelSlider'
             }),
-            'mood_level': RangeInput(attrs={  # ← Use custom widget
+            'mood_level': RangeInput(attrs={
                 'min': 1,
                 'max': 10,
                 'step': 1,
@@ -76,14 +76,14 @@ class QuickEntryForm(forms.ModelForm):
                 'placeholder': 'Where is your pain today?',
                 'maxlength': '25'
             }),
-            'pain_level': RangeInput(attrs={  # ← Use custom widget
+            'pain_level': RangeInput(attrs={
                 'min': 0,
                 'max': 10,
                 'step': 1,
                 'class': 'form-range',
                 'id': 'quickPainLevelSlider'
             }),
-            'mood_level': RangeInput(attrs={  # ← Use custom widget
+            'mood_level': RangeInput(attrs={
                 'min': 1,
                 'max': 10,
                 'step': 1,

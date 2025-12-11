@@ -93,6 +93,42 @@ class TestDiaryEntryForm(TestCase):
         })
         self.assertTrue(entry_form.is_valid(), msg='Form should be valid with mood level 10')
 
+    def test_sleep_hours_min_boundary(self):
+        """ Test sleep hours minimum boundary (0) """
+        entry_form = DiaryEntryForm({
+            'location': 'home',
+            'pain_level': '5',
+            'mood_level': '8',
+            'sleep_hours': '0',
+            'triggers': 'none',
+            'notes': 'This is a note',
+        })
+        self.assertTrue(entry_form.is_valid(), msg='Form should be valid with sleep hours 0')
+
+    def test_sleep_hours_max_boundary(self):
+        """ Test sleep hours maximum boundary (24) """
+        entry_form = DiaryEntryForm({
+            'location': 'home',
+            'pain_level': '5',
+            'mood_level': '8',
+            'sleep_hours': '24',
+            'triggers': 'none',
+            'notes': 'This is a note',
+        })
+        self.assertTrue(entry_form.is_valid(), msg='Form should be valid with sleep hours 24')
+
+    def test_sleep_hours_whole_numbers(self):
+        """ Test sleep hours accepts whole number values """
+        entry_form = DiaryEntryForm({
+            'location': 'home',
+            'pain_level': '5',
+            'mood_level': '8',
+            'sleep_hours': '8',
+            'triggers': 'none',
+            'notes': 'This is a note',
+        })
+        self.assertTrue(entry_form.is_valid(), msg='Form should be valid with whole number sleep hours')
+
     # Max character length tests
     def test_location_max_length(self):
         """ Test location field respects max length of 25 characters """

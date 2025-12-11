@@ -222,7 +222,7 @@ Django==4.2.26 dj-database-url==2.1.0 gunicorn==22.0.0 whitenoise==6.7.0 django-
 - Navigate to Dashboard - you'll see a personalized greeting
 - Use Quick Entry for rapid logging or click "Detailed Entry" for comprehensive tracking
 - Fill in the form:
-  - Location (where you are)
+  - Location (where is your pain)
   - Pain Level (0-10 slider)
   - Mood Level (1-10 slider)
   - Sleep Hours
@@ -447,11 +447,11 @@ I used [ValidateJavaScript](https://validatejavascript.com/) to validate both [`
 
 **Script.js**
 
-- **Missing Radix Parameter**: ESLint flagged multiple instances of `parseInt()` calls without specifying the radix parameter (e.g., `parseInt(slider.value)` instead of `parseInt(slider.value, 10)`). This occurred because JavaScript's `parseInt()` function attempts to guess the number base without an explicit radix, which can lead to unexpected behavior with certain input values. Resolved by adding the decimal radix parameter to all `parseInt()` calls.
+- **Missing Radix Parameter**: Flagged multiple instances of `parseInt()` calls without specifying the radix parameter (e.g., `parseInt(slider.value)` instead of `parseInt(slider.value, 10)`). This occurred because JavaScript's `parseInt()` function attempts to guess the number base without an explicit radix, which can lead to unexpected behavior with certain input values. Resolved by adding the decimal radix parameter to all `parseInt()` calls.
 
 - **Function Used Before Declaration**: Initial code structure had function calls in `DOMContentLoaded` before the functions were declared, violating JavaScript hoisting best practices. This was resolved by reorganizing the code with a clear hierarchy: utility functions first, class definitions second, global variables third, composite functions fourth, and main initialization last.
 
-- **Inner Function Declarations**: ESLint detected function declarations nested inside other functions (e.g., `updateSlider()` inside `initializeSlider()`), which is discouraged for scope clarity. Fixed by converting nested function declarations to arrow function expressions (e.g., `const updateSlider = () => { ... }`).
+- **Inner Function Declarations**: Detected function declarations nested inside other functions (e.g., `updateSlider()` inside `initializeSlider()`), which is discouraged for scope clarity. Fixed by converting nested function declarations to arrow function expressions (e.g., `const updateSlider = () => { ... }`).
 
 - **Undefined Global Variables**: The linter flagged `'document' is not defined` and `'bootstrap' is not defined` errors because it didn't recognize the browser environment context. Resolved by adding environment directives at the top of the file: `/* eslint-env browser */` and `/* global bootstrap */`.
 
@@ -502,7 +502,7 @@ I used [Code Institutes Python Linter](https://pep8ci.herokuapp.com/) to validat
   - Continue scrolling down to 'Manual deploy'
   - 'Choose a branch to deploy' set to 'main'
   - Click 'Deploy Branch'
-8. Wait for the build to complete then click 'Open App' at the top right of the Deploy page
+8. Wait for the build to complete then click 'View' at the bottom or 'Open App' at the top right of the Deploy page
 
 ### Environment Variables
 #### Required for production:
@@ -523,7 +523,7 @@ GitHub Copilot was utilized throughout the development of The Gentle Journal to 
 - **JavaScript Implementation**: Generating complex Chart.js configurations for the analytics dashboard, including dual y-axis setups, responsive chart options, and interactive data toggle functionality
 - **Django Views and Models**: Suggesting efficient query patterns, form validation logic, and view structure for CRUD operations while ensuring proper user authentication and data isolation
 - **CSS Styling**: Providing responsive design solutions, particularly for the interactive slider components with color-coded pain level indicators and modal layouts across different screen sizes
-- **Testing Framework**: Generating comprehensive Django TestCase methods for form validation, view functionality, and security testing, significantly improving test coverage
+- **Testing Framework**: Generating additional comprehensive Django TestCase methods for form validation, view functionality, and security testing, significantly improving test coverage
 - **Documentation**: Assisting with docstring creation, code comments, and README structure to maintain clear, professional documentation standards
 
 Copilot's suggestions were carefully reviewed and adapted to fit the specific healthcare context and user experience requirements of the application, ensuring that all generated code aligned with accessibility standards and Django best practices.

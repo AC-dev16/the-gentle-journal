@@ -473,9 +473,20 @@ All validation errors were successfully resolved while maintaining full function
   <img src="static/images/readme/js-validator1.png" width="550" height="350">
 </div>
 
-**PEP8 Stardards**
+**PEP8 Standards**
 
-I used [Code Institutes Python Linter](https://pep8ci.herokuapp.com/) to validate all Python files.
+I used [Code Institute's Python Linter](https://pep8ci.herokuapp.com/) to validate all Python files against PEP8 style guidelines.
+
+**Errors Encountered**
+- **Whitespace and Formatting Issues**: Minor spacing and indentation inconsistencies were identified and resolved following PEP8 conventions
+- **Line Length Violations**: Several lines exceeded the recommended 79-character limit. While most were successfully refactored using line breaks and proper indentation, some instances in complex Django URL patterns and query chains required careful consideration to maintain functionality and readability
+
+All critical PEP8 violations were addressed while ensuring code functionality remained intact. The few remaining line length exceptions were carefully evaluated and deemed necessary to preserve code clarity and Django framework conventions.
+
+<div>
+  <img src="static/images/readme/python-linter-error.png" width="400" height="250">
+  <img src="static/images/readme/python-linter.png" width="400" height="250">
+</div>
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 

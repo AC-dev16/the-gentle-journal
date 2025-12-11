@@ -534,6 +534,41 @@ GitHub Copilot proved invaluable during the debugging process, particularly when
 
 ## Learning Points
 
+### Technical Development Insights
+
+- **Event Handling Optimization**: Implementing `event.stopPropagation()` on edit/delete buttons within entry cards prevented unintended modal activation when users clicked action buttons, demonstrating the importance of proper event bubbling control in complex UI interactions.
+
+- **Iterative Learning Approach**: I embraced a hands-on learning methodology where mistakes became valuable learning opportunities, reinforcing the principle that practical experience often provides deeper understanding than theoretical knowledge alone.
+
+- **AI-Assisted Development Best Practices**: I developed effective strategies for leveraging GitHub Copilot while maintaining code quality standards:
+  - Critical evaluation of all AI suggestions before implementation
+  - Verification that recommendations align with clean code principles and Django best practices
+  - Assessment of potential impacts on existing project functionality
+  - Ensuring AI-generated code remained at an appropriate complexity level for maintainability
+  - Requesting explanations for unfamiliar code patterns before integration
+
+- **Balanced AI Collaboration**: I recognized that AI tools don't always provide optimal solutions, so I learned to combine human judgment with AI assistance. I often identified simpler, more elegant solutions through independent analysis while using AI for implementation guidance.
+
+- **Reverse Engineering and Integration**: I developed skills in creating initial code solutions independently, then directing AI assistance to properly integrate custom logic within Django's framework and architectural patterns.
+
+### Project Management and Development Process
+
+- **Form Validation Architecture**: I gained deeper understanding of Django's form validation system, particularly when creating custom widgets like the `RangeInput` class to resolve HTML5 validation conflicts while maintaining server-side validation integrity.
+
+- **JavaScript Code Organization**: I learned the importance of proper function declaration order and scope management to avoid hoisting issues and maintain clean, lint-compliant code structure.
+
+- **Database Optimization**: I developed proficiency in Django ORM query optimization, user data isolation, and implementing secure CRUD operations with proper authentication checks.
+
+- **Testing-Driven Development**: I strengthened my understanding of comprehensive test coverage including form validation, view functionality, user authentication flows, and security boundary testing using Django's TestCase framework.
+
+### Professional Development
+
+- **Documentation Standards**: I improved my technical writing skills through creating comprehensive README documentation, code comments, and inline documentation that serves both current development needs and future maintenance requirements.
+
+- **Accessibility Compliance**: I gained practical experience in implementing WCAG 2.1 AA accessibility standards, including color contrast ratios, semantic HTML structure, and assistive technology compatibility.
+
+- **Version Control and Deployment**: I developed proficiency in Git workflow management, environment variable configuration, and production deployment processes using Heroku and PostgreSQL.
+
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
 ## Credits

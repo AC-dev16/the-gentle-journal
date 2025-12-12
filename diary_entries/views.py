@@ -59,6 +59,7 @@ class DiaryEntryListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['total_entries'] = self.get_queryset().count()
         return context
 
 

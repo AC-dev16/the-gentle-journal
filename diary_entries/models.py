@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 
 # Create your models here.
@@ -27,10 +28,17 @@ class DiaryEntry(models.Model):
         help_text="Additional notes about your condition and wellbeing (max 1000 characters)"
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(null=True, blank=True)  # Changed: Remove auto_now
 
     class Meta:
         ordering = ['-created_at']
+
+    def save(self, *args, **kwargs):
+        # Only set updated_at if this is an existing entry being modified
+        if self.pk is not None:  # Entry already exists (editing)
+            self.updated_at = timezone.now()
+        # For new entries, updated_at remains None
+        super().save(*args, **kwargs)
 
     def clean(self):
         super().clean()

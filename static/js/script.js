@@ -172,6 +172,7 @@ function initializeModalHandling() {
                 const notes = this.getAttribute('data-notes');
                 const createdAt = this.getAttribute('data-created-at');
                 const updatedAt = this.getAttribute('data-updated-at');
+                const hasBeenUpdated = this.getAttribute('data-has-been-updated') === 'true';
                 
                 // Update modal content
                 const modal = document.getElementById('readEntryModal');
@@ -183,7 +184,17 @@ function initializeModalHandling() {
                     document.getElementById('modalTriggers').value = triggers || 'No triggers specified';
                     document.getElementById('modalNotes').value = notes || 'No additional notes';
                     document.getElementById('modalCreatedAt').textContent = createdAt;
-                    document.getElementById('modalUpdatedAt').textContent = updatedAt;
+                    
+                    // Show/hide updated field based on whether entry has been edited
+                    const updatedContainer = document.getElementById('modalUpdatedContainer');
+                    const updatedField = document.getElementById('modalUpdatedAt');
+                    
+                    if (hasBeenUpdated) {
+                        updatedField.textContent = updatedAt;
+                        updatedContainer.style.display = 'block';
+                    } else {
+                        updatedContainer.style.display = 'none';
+                    }
                     
                     // Update the Edit button URL dynamically
                     const editButton = document.getElementById('modalEditButton');

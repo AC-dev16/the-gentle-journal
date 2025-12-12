@@ -33,7 +33,8 @@
              data-triggers="{{ entry.triggers|default_if_none:'None specified' }}"
              data-notes="{{ entry.notes|default_if_none:'No additional notes' }}"
              data-created-at="{{ entry.created_at|date:'M d, Y H:i' }}"
-             data-updated-at="{{ entry.updated_at|date:'M d, Y H:i' }}">
+             data-updated-at="{% if entry.updated_at %}{{ entry.updated_at|date:'M d, Y H:i' }}{% else %}Never{% endif %}"
+             data-has-been-updated="{% if entry.updated_at %}true{% else %}false{% endif %}">
             
             <!-- Entry content -->
             <div class="d-flex justify-content-between align-items-start">
@@ -113,7 +114,8 @@
                         <h6>Created</h6>
                         <p id="modalCreatedAt" class="text-muted"></p>
                     </div>
-                    <div class="col-md-4">
+                    <!-- Updated field - conditionally displayed -->
+                    <div class="col-md-4" id="modalUpdatedContainer" style="display: none;">
                         <h6>Updated</h6>
                         <p id="modalUpdatedAt" class="text-muted"></p>
                     </div>

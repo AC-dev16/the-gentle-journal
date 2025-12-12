@@ -83,8 +83,8 @@ The color palette for The Gentle Journal was carefully selected to create a calm
 - **Primary Color**: #D9EAD3 (Soft green for calm, healing theme)
 - **Secondary Color**: #3A7D7D (Teal for trust and stability)
 - **Accent Color**: #EDEAF6 (Light lavender for highlights/ buttons)
-- **Primary Text Color**: #2F4F4F (Dark slate gray for readability)
-- **Secondary Text Color**: #6B7D7D (Muted teal‑gray conveys calmness and stability)
+- **Primary Text Color**: #2F4F4F (Muted teal‑gray conveys calmness and stability)
+- **Secondary Text Color**: #6B7D7D (A medium-dark gray with soft teal undertones for balance, calm and readability)
 
 ![Color Palette](static/images/readme/color-palette.png)
 
@@ -310,7 +310,6 @@ Django==4.2.26 dj-database-url==2.1.0 gunicorn==22.0.0 whitenoise==6.7.0 django-
 
 - Registration process
 - Login/logout functionality
-- Password reset (if enabled)
 
 ### Responsive Design
 
@@ -434,8 +433,11 @@ Contact
 
 **HTML Validator**
 
-I used [HTML Validation]() to test all my templates. Errors Encountered:
-- **Duplicated IDs**: This was an error caused by having an 'id' (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the `id` and using a `class` instead.
+I used [HTML Validation]() to test all my templates. 
+
+**Errors Encountered:**
+
+- **Duplicated IDs**: This was an error caused by having an `id` (for CSS specificity reasons) on the entry card which was then duplicated with each entry. Resolved by removing the `id` and using a `class` instead.
 - **Accessibility Compliance**: A validation error was identified where a `div` element contained an `aria-labelledby` attribute without a corresponding `role` attribute. This violates accessibility guidelines as `div` elements are semantically neutral and not part of the accessibility tree by default. The issue was resolved by adding an appropriate `role` attribute.
 - **Range Input Validation**: Initial HTML validation errors occurred because Django automatically adds the `required` attribute to range input sliders, which is invalid HTML5 syntax. This was resolved by creating a custom `RangeInput` widget in [`forms.py`](diary_entries/forms.py) that removes the `required` attribute during rendering, ensuring clean HTML output while maintaining server-side form validation functionality.
 - **Django Allauth Integration**: During validation testing of the Sign Up page, four HTML validation errors were identified within the Django Allauth authentication framework's auto-generated markup. These errors originate from the third-party library's form rendering and are outside the scope of custom application code modifications, representing a known limitation when integrating Django Allauth with strict HTML validation standards.
@@ -548,7 +550,7 @@ Copilot's suggestions were carefully reviewed and adapted to fit the specific he
 
 ### Debugging
 
-GitHub Copilot proved invaluable during the debugging process, particularly when resolving complex issues such as HTML validation errors with Django form widgets, JavaScript scope conflicts between analytics and main script files, and CSS specificity problems with Bootstrap overrides. The AI assistance helped identify root causes more quickly and suggested targeted solutions that maintained code consistency across the application.
+Copilot proved invaluable during the debugging process, particularly when resolving complex issues such as HTML validation errors with Django form widgets, JavaScript scope conflicts between analytics and main script files, and CSS specificity problems with Bootstrap overrides. The AI assistance helped identify root causes more quickly and suggested targeted solutions that maintained code consistency across the application.
 
 <p align="right"><a href="#the-gentle-journal">Back To Top</a></p>
 
@@ -560,7 +562,7 @@ GitHub Copilot proved invaluable during the debugging process, particularly when
 
 - **Iterative Learning Approach**: I embraced a hands-on learning methodology where mistakes became valuable learning opportunities, reinforcing the principle that practical experience often provides deeper understanding than theoretical knowledge alone.
 
-- **AI-Assisted Development Best Practices**: I developed effective strategies for leveraging GitHub Copilot while maintaining code quality standards:
+- **AI-Assisted Development Best Practices**: I developed effective strategies for leveraging Copilot while maintaining code quality standards:
   - Critical evaluation of all AI suggestions before implementation
   - Verification that recommendations align with clean code principles and Django best practices
   - Assessment of potential impacts on existing project functionality
